@@ -27,6 +27,7 @@ public class CassandraEmployeUtils
         	 resultat += " " + resultat.length() + " ";
 			
 		}
+         cluster.close();
          return resultat;
          //System.out.println(session.execute(cqlStatement3).toString());
 	}
@@ -41,9 +42,61 @@ public class CassandraEmployeUtils
          res = session.execute(cqlStatement3).all();
          List<String> resultat = new ArrayList<String>();
          for (int i = 0; i < res.size(); i++) {  	
-        	resultat.add(res.get(i).getString(4) + " " +res.get(i).getString(6));			
+        	resultat.add(res.get(i).getString(4) + " " +res.get(i).getString(6) + "@" + res.get(i).getString(0));			
 		}
+         cluster.close();
          return resultat;
+	}
+	 public List<Employe> getAllEmployesObjects(){
+		 Cluster cluster = Cluster.builder()
+                 .addContactPoints("127.0.0.1")
+                 .build();
+         Session session = cluster.connect();
+         String cqlStatement3 = "SELECT * FROM myfirstcassandradb.employees";
+         session.execute(cqlStatement3);
+         List<Row> res;
+         res = session.execute(cqlStatement3).all();
+         List<Employe> resultat = new ArrayList<Employe>();
+         for (int i = 0; i < res.size(); i++) {  	
+         	resultat.add(getEmployeByUsername(res.get(i).getString(0)));			
+ 		}
+         return resultat;
+	  }
+	public Employe getEmployeByName(String name){
+		Cluster cluster = Cluster.builder()
+                .addContactPoints("127.0.0.1")
+                .build();
+        Session session = cluster.connect();
+        System.out.println(name);
+        String cqlWhereEmail = "SELECT * FROM myfirstcassandradb.employees WHERE username = '" + name.split(" ")[1].substring(0,1).toLowerCase()+name.split(" ")[0].toLowerCase() +"'";
+        List<Row> resultList  = session.execute(cqlWhereEmail).all();
+        Employe repEmploye = new Employe(resultList.get(0).getString(0),resultList.get(0).getString(4),resultList.get(0).getString(6),resultList.get(0).getString(2),resultList.get(0).getString(3),resultList.get(0).getString(1),resultList.get(0).getString(5));
+        cluster.close();
+        return repEmploye;
+	}
+	public Employe getEmployeByUsername(String name){
+		Cluster cluster = Cluster.builder()
+                .addContactPoints("127.0.0.1")
+                .build();
+        Session session = cluster.connect();
+        System.out.println(name);
+        String cqlWhereEmail = "SELECT * FROM myfirstcassandradb.employees WHERE username = '" + name +"'";
+        List<Row> resultList  = session.execute(cqlWhereEmail).all();
+        List<com.datastax.driver.core.UDTValue> listprojectres = new ArrayList<com.datastax.driver.core.UDTValue>();      
+        listprojectres = resultList.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
+        List<String> projects = new ArrayList<String>();
+        if(!(listprojectres).isEmpty()){
+        	 for (int i = 0; i < listprojectres.size(); i++) {  	
+        		projects.add(listprojectres.get(i).getString("name")+";"+listprojectres.get(i).getString("role")+";"+listprojectres.get(i).getString("datedebut")+";"+listprojectres.get(i).getString("datefin"));  	         
+        	 }
+         }
+        System.out.println(projects);
+        Employe repEmploye = new Employe();
+        if(!(resultList.isEmpty())){
+        repEmploye = new Employe(resultList.get(0).getString(0),resultList.get(0).getString(4),resultList.get(0).getString(6),resultList.get(0).getString(2),resultList.get(0).getString(3),resultList.get(0).getString(1),resultList.get(0).getString(5),projects);
+        }
+        cluster.close();
+        return repEmploye;
 	}
 	public Boolean ajouterEmploye(Employe employe){
 		 Cluster cluster = Cluster.builder()
@@ -97,25 +150,39 @@ public class CassandraEmployeUtils
         	    return false;//L'employé n'a pas été modifié il n'existe pas dans la base 
          }
 	}
-    /*public static void main( String[] args )
-    {
-        Cluster cluster = Cluster.builder()	
-                          .addContactPoints("127.0.0.1")
-                          .build();
-        Session session = cluster.connect();
-        String cqlStatement = "CREATE KEYSPACE myfirstcassandradb WITH " + 
-                              "replication = {'class':'SimpleStrategy','replication_factor':1}";        
-        session.execute(cqlStatement);
-
-        String cqlStatement2 = "CREATE TABLE myfirstcassandradb.users (" + 
-                               " user_name varchar PRIMARY KEY," + 
-                               " password varchar " + 
-                               ");";
-        session.execute(cqlStatement2);
-        String cqlStatement3 = "SELECT * FROM myfirstcassandradb.users";
-        session.execute(cqlStatement3);
-        
-        System.out.println(session.execute(cqlStatement3).toString());
-        System.exit(0);
-    }*/
+  public Boolean addProjectForEmploye(Project project, Employe employe, String datedebut, String datefin, String role){
+	  Cluster cluster = Cluster.builder()
+              .addContactPoints("127.0.0.1")
+              .build();
+      Session session = cluster.connect();
+      String cqladdprojectforemploye = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist + [{name: '"+project.getNom()+"', datedebut: '"+datedebut+"', datefin: '"+datefin+"', role : '"+role+"'}] WHERE username = '"+employe.getUsername()+"'";
+	  System.out.println(cqladdprojectforemploye);
+      session.execute(cqladdprojectforemploye);
+	  
+	  return false;
+  }
+  
+  public Boolean projectAlreadyInEmployeList(Project project, Employe employe){
+	  Cluster cluster = Cluster.builder()
+              .addContactPoints("127.0.0.1")
+              .build();
+      Session session = cluster.connect();
+      
+      String cqlStatementselect = "SELECT * FROM myfirstcassandradb.employees WHERE username = '"+employe.getUsername()+"'";
+      List<Row> res;
+      res = session.execute(cqlStatementselect).all();
+      List<com.datastax.driver.core.UDTValue> listprojectres = new ArrayList<com.datastax.driver.core.UDTValue>();      
+      listprojectres = res.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
+      if(!(listprojectres).isEmpty()){
+     	 for (int i = 0; i < listprojectres.size(); i++) {  	
+     		 if(listprojectres.get(i).getString("name").equals(project.getNom())){
+     			 return true;
+     		 }
+	         
+     	 }
+      }
+        cluster.close();       
+		return false;
+  }
+ 
 }

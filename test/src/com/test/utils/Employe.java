@@ -1,7 +1,14 @@
 package com.test.utils;
 
+import java.util.List;
+
 public class Employe {
 	
+	public Employe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private String username;
 	private String nom;
 	private String prenom;
@@ -9,7 +16,29 @@ public class Employe {
 	private String email;
 	private String adresse;
 	private String password;
+	private List<String> projects;
 	
+	public List<String> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<String> projects) {
+		this.projects = projects;
+	}
+
+	public Employe(String username, String nom, String prenom, String dateDeNaissance, String email, String adresse,
+			String password, List<String> projects) {
+		super();
+		this.username = username;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateDeNaissance = dateDeNaissance;
+		this.email = email;
+		this.adresse = adresse;
+		this.password = password;
+		this.projects = projects;
+	}
+
 	public Employe(String username, String nom, String prenom, String dateDeNaissance, String email, String adresse, String password){
 		
 		this.username = username;

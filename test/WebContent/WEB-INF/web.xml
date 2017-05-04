@@ -18,12 +18,20 @@
     <servlet-class>com.test.servlets.Connexion</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>CreateApp</servlet-name>
-    <servlet-class>com.test.servlets.CreateApp</servlet-class>
+    <servlet-name>EmployeApp</servlet-name>
+    <servlet-class>com.test.servlets.EmployeApp</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProjectApp</servlet-name>
+    <servlet-class>com.test.servlets.ProjectApp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>TestApp</servlet-name>
     <servlet-class>com.test.servlets.TestApp</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DrawApp</servlet-name>
+    <servlet-class>com.test.servlets.DrawApp</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
@@ -38,7 +46,15 @@
     <url-pattern>/testapp</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>CreateApp</servlet-name>
-    <url-pattern>/createemploye</url-pattern>
+    <servlet-name>EmployeApp</servlet-name>
+    <url-pattern>/employeapp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProjectApp</servlet-name>
+    <url-pattern>/projectapp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DrawApp</servlet-name>
+    <url-pattern>/drawapp</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -7,40 +7,43 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Ceci est une page générée depuis une JSPL.</p>
+<p>Acceuil Intranet EverBe</p>
 		<p>
             <% 
             String attribut = (String) request.getAttribute("test");
-           // out.println( attribut );
+           // out.println(attribut);
             %>
-            ${employe}
+           <%--  ${employe}
             ${test}
             <% 
             String attribu = (String) request.getAttribute("buttonName");
-            //out.println( attribu );
+            //out.println(attribu);
            	 %>
-            
+            --%>
         </p>	
          <p>
              <% 
             //if(request.getParameter("buttonName") != null) {
             if(request.getParameterNames() != null) {
       		  %>
-            You clicked 
-            <%= request.getParameter("buttonName") %>
+          
+           
       	  <%
              }
       	  %>
-        <FORM NAME="form1" METHOD="POST">
-            <INPUT TYPE="HIDDEN" NAME="buttonName">
-            <INPUT TYPE="BUTTON" VALUE="Button 1" ONCLICK="button1()">
-            <INPUT TYPE="BUTTON" VALUE="Button 2" ONCLICK="button2()">
-        </FORM>
-		<input type="button" value="Créer un employé" name="CreateCourse" 
-		onclick="openPage('createemploye')" />
-		<form name="modificate" action="testapp" method="post">
-			 <input type="hidden" name="formname" value="modificate"/>
-   			 <button name="modificate" value="upvote">Modifier un employé</button>
+      
+		<%-- <input type="button" value="Créer un employé" name="createemploye"
+		onclick="openPage('createemploye')" />--%>
+		
+		<form action ="employeapp">
+			 
+   			 <button>Gérer les employés</button>
+		</form>
+		<form action ="projectapp">
+   			 <button>Gérer les projets</button>
+		</form>
+		<form action ="drawapp">
+   			 <button>Afficher répartition projets</button>
 		</form>
         <SCRIPT LANGUAGE="JavaScript">
             <!--

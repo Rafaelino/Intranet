@@ -8,6 +8,7 @@
 </head>
 <body>
 <form method="post">
+		<input type="hidden" name="formname" value="saveemploye"/>
             <center>
             <table border="1" width="30%" cellpadding="5">
                 <thead>
@@ -41,14 +42,14 @@
                         <td><input type="text" name="datedenaissance" value="" /></td>
                     </tr>
                     <tr>
-                        <td><input type="reset" value="Remettre à zero" /></td>
+                        <td></td>
                         <td><input type="submit" value="Enregistrer" /></td>
                     </tr>
-                    <tr>
-                        <td colspan="2">Modfier un employé <a href="ModificateEmployee.jsp">Login Here</a></td>
-                    </tr>
+                    
                 </tbody>
             </table>
             </center>
-        </form></body>
+        </form>
+        <button type="button" name="back" onclick="history.back()">Retour</button>
+        </body>
 </html>

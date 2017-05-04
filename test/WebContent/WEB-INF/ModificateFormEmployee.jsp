@@ -8,6 +8,7 @@
 </head>
 <body>
 <form method="post">
+	<input type="hidden" name="formname" value="modificateform"/>
             <center>
             <table border="1" width="30%" cellpadding="5">
                 <thead>
@@ -15,41 +16,46 @@
                         <th colspan="2">Mofifier informations Employé : </th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <tr>
                         <td>Nom</td>
-                        <td><input type="text" name="nom" value={$nom}/></td>
+                        <td><input type="text" name="nom" value="${nom}"></td>
                     </tr>
                     <tr>
                         <td>Prénom</td>
-                        <td><input type="text" name="prenom" value="" /></td>
+                        <td><input type="text" name="prenom" value="${prenom}" /></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
+                        <td><input type="text" name="email" value="${email}" /></td>
                     </tr>
                     <tr>
                         <td>Adresse</td>
-                        <td><input type="text" name="adresse" value="" /></td>
+                        <td><input type="text" name="adresse" value="${adresse}" /></td>
                     </tr>
                     <tr>
                         <td>Mot de passe</td>
-                        <td><input type="password" name="motdepasse" value="" /></td>
+                        <td><input type="password" name="motdepasse" value="${motdepasse}" /></td>
                     </tr>
                      <tr>
                         <td>Date de naissance (jjmmaaaa)</td>
-                        <td><input type="text" name="datedenaissance" value="" /></td>
+                        <td><input type="text" name="datedenaissance" value="${datedenaissance}" /></td>
                     </tr>
                     <tr>
-                        <td><input type="reset" value="Remettre à zero" /></td>
                         <td><input type="submit" value="Enregistrer" /></td>
                     </tr>
-                    <tr>
-                        <td colspan="2">Modfier un employé <a href="ModificateEmployee.jsp">Login Here</a></td>
-                    </tr>
+                    
                 </tbody>
             </table>
             </center>
+        </form>
+        <form method="post">
+        <input type="hidden" name="formname" value="suppression"/>
+        <input type="hidden" name="nom" value="${username}">
+        <center>
+        Autre action :  <td><input type="submit" value="Supprimer l'employé"/></td>
+        </center>
         </form>
 </body>
 </html>

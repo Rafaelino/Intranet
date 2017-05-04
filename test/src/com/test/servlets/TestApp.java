@@ -27,8 +27,6 @@ public class TestApp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
-		Employe employe = new Employe("RadianFetita","Fetita de Sousa","Radian","14061987","rfetita@everbe.com","32 rue Polia 33400 Marmande","radian");
-		app.modifierEmploye(employe);
 		/*if(app.ajouterEmploye(employe)){
 			request.setAttribute("employe", "Nouvel employé ajouté à la base");
 		}else{request.setAttribute("employe", "Employé déjà présent dans la base");
@@ -36,7 +34,7 @@ public class TestApp extends HttpServlet {
 		String responsereq = app.afficherTable();	
 		System.out.println("gett");
 		request.setAttribute( "test", responsereq );
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/test.jsp" ).forward( request, response );
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
 	}
 
 	/**
@@ -46,18 +44,31 @@ public class TestApp extends HttpServlet {
 		// TODO Auto-generated method stub
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
 		System.out.println(request.getParameterValues("formname"));
-		if (request.getParameterValues("formname")[0].equals("modificate")){
-			request.setAttribute("employees", app.getAllEmployes());
-			this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateEmployee.jsp" ).forward( request, response );
+		if(request.getParameterValues("formname") != null){
+			if (request.getParameterValues("formname")[0].equals("modificate")){
+				request.setAttribute("employees", app.getAllEmployes());
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateEmployee.jsp" ).forward( request, response );
+			}
+			else if(request.getParameterValues("formname")[0].equals("modificateform")){
+				Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),request.getParameter("motdepasse"));
+				app.modifierEmploye(employe);
+				doGet(request, response);
+			}
+			else if (request.getParameterValues("formname")[0].equals("selection")){
+				String name = request.getParameter("listemploye");
+				Employe employe = app.getEmployeByName(name);
+				request.setAttribute("nom", employe.getNom());
+				request.setAttribute("prenom", employe.getPrenom());
+				request.setAttribute("email", employe.getEmail());
+				request.setAttribute("adresse", employe.getAdresse());
+				System.out.println(employe.getPassword());
+				request.setAttribute("motdepasse", employe.getPassword());
+				request.setAttribute("datedenaissance", employe.getDateDeNaissance());
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateFormEmployee.jsp" ).forward( request, response );
+			}else{
+			request.setAttribute("buttonName", "Youslicked");
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );}
 		}
-		else if (request.getParameterValues("formname")[0].equals("selection")){
-			String Name = request.getParameter("listemploye");
-			//getemployebyName 
-			request.setAttribute("employees", app.getAllEmployes());
-			this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateFormEmployee.jsp" ).forward( request, response );
-		}else{
-		request.setAttribute( "buttonName", "Youclicked" );
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/test.jsp" ).forward( request, response );}
 	}
 
 }

@@ -17,7 +17,9 @@
 		 List<String> employees = (List<String>) request.getAttribute("employees");
 		 for (String employe : employees)
 		 { 
-		out.print("<option value='"+employe+"'>"+employe+"</option>");
+		out.print("<option value='"+employe.split("@")[1]+"'>"+employe.split("@")[0]+"</option>");
+		
+		System.out.println("<option value='"+employe.split("@")[0]+"'>"+employe.split("@")[1]+"</option>");
 		 }
 		%>
 	  </select>
