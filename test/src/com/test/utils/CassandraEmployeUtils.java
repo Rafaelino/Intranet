@@ -1,5 +1,7 @@
-package com.test.servlets;
+package com.test.utils;
 
+import com.test.beans.Employe;
+import com.test.beans.Project;
 import com.test.utils.*;
 import java.util.*;
 import com.datastax.driver.core.Cluster;
@@ -60,6 +62,7 @@ public class CassandraEmployeUtils
          for (int i = 0; i < res.size(); i++) {  	
          	resultat.add(getEmployeByUsername(res.get(i).getString(0)));			
  		}
+         cluster.close();
          return resultat;
 	  }
 	public Employe getEmployeByName(String name){
@@ -71,6 +74,8 @@ public class CassandraEmployeUtils
         String cqlWhereEmail = "SELECT * FROM myfirstcassandradb.employees WHERE username = '" + name.split(" ")[1].substring(0,1).toLowerCase()+name.split(" ")[0].toLowerCase() +"'";
         List<Row> resultList  = session.execute(cqlWhereEmail).all();
         Employe repEmploye = new Employe(resultList.get(0).getString(0),resultList.get(0).getString(4),resultList.get(0).getString(6),resultList.get(0).getString(2),resultList.get(0).getString(3),resultList.get(0).getString(1),resultList.get(0).getString(5));
+        session.close();
+
         cluster.close();
         return repEmploye;
 	}
@@ -82,7 +87,9 @@ public class CassandraEmployeUtils
         System.out.println(name);
         String cqlWhereEmail = "SELECT * FROM myfirstcassandradb.employees WHERE username = '" + name +"'";
         List<Row> resultList  = session.execute(cqlWhereEmail).all();
-        List<com.datastax.driver.core.UDTValue> listprojectres = new ArrayList<com.datastax.driver.core.UDTValue>();      
+        List<com.datastax.driver.core.UDTValue> listprojectres = new ArrayList<com.datastax.driver.core.UDTValue>();   
+        Employe repEmploye = new Employe();
+        if(!(resultList.isEmpty())){
         listprojectres = resultList.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
         List<String> projects = new ArrayList<String>();
         if(!(listprojectres).isEmpty()){
@@ -91,12 +98,17 @@ public class CassandraEmployeUtils
         	 }
          }
         System.out.println(projects);
-        Employe repEmploye = new Employe();
+        
         if(!(resultList.isEmpty())){
-        repEmploye = new Employe(resultList.get(0).getString(0),resultList.get(0).getString(4),resultList.get(0).getString(6),resultList.get(0).getString(2),resultList.get(0).getString(3),resultList.get(0).getString(1),resultList.get(0).getString(5),projects);
-        }
+        repEmploye = new Employe(resultList.get(0).getString(0),resultList.get(0).getString(4),resultList.get(0).getString(6),resultList.get(0).getString(2),resultList.get(0).getString(3),resultList.get(0).getString(1),resultList.get(0).getString(5),projects,resultList.get(0).getString(8));
+        }}
+        session.close();
         cluster.close();
         return repEmploye;
+	}
+	
+	public Boolean isEmployeAdmin(Employe employe){
+		return (employe.getAdmin().equals("yes"));
 	}
 	public Boolean ajouterEmploye(Employe employe){
 		 Cluster cluster = Cluster.builder()
@@ -158,7 +170,7 @@ public class CassandraEmployeUtils
       String cqladdprojectforemploye = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist + [{name: '"+project.getNom()+"', datedebut: '"+datedebut+"', datefin: '"+datefin+"', role : '"+role+"'}] WHERE username = '"+employe.getUsername()+"'";
 	  System.out.println(cqladdprojectforemploye);
       session.execute(cqladdprojectforemploye);
-	  
+	  session.close();
 	  return false;
   }
   
@@ -181,6 +193,7 @@ public class CassandraEmployeUtils
 	         
      	 }
       }
+	  	session.close();
         cluster.close();       
 		return false;
   }

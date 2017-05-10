@@ -33,6 +33,10 @@
     <servlet-name>DrawApp</servlet-name>
     <servlet-class>com.test.servlets.DrawApp</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>MyAccompt</servlet-name>
+    <servlet-class>com.test.servlets.MyAccompt</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
     <url-pattern>/tete</url-pattern>
@@ -56,5 +60,9 @@
   <servlet-mapping>
     <servlet-name>DrawApp</servlet-name>
     <url-pattern>/drawapp</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>MyAccompt</servlet-name>
+    <url-pattern>/myaccompt</url-pattern>
   </servlet-mapping>
 </web-app>

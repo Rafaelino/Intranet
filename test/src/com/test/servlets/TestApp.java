@@ -1,4 +1,5 @@
 package com.test.servlets;
+import com.test.beans.Employe;
 import com.test.utils.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class TestApp
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TestApp")
 public class TestApp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       Tools tools = new Tools();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,11 +33,20 @@ public class TestApp extends HttpServlet {
 			request.setAttribute("employe", "Nouvel employé ajouté à la base");
 		}else{request.setAttribute("employe", "Employé déjà présent dans la base");
 		}*/
-		String responsereq = app.afficherTable();	
-		System.out.println("gett");
-		request.setAttribute( "test", responsereq );
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
+		HttpSession session = request.getSession();
+		if (!(session.getAttribute("email") == null)){
+		String userEmail = (String) session.getAttribute("email");
+		if (userEmail.split("@")[1].equals("everbe.com")){
+			request.setAttribute("admin", session.getAttribute("admin"));
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
+		}else{
+			session.invalidate();
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/Reauthentification.jsp" ).forward( request, response );
+		}
+		
 	}
+		//this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,6 +76,9 @@ public class TestApp extends HttpServlet {
 				request.setAttribute("motdepasse", employe.getPassword());
 				request.setAttribute("datedenaissance", employe.getDateDeNaissance());
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateFormEmployee.jsp" ).forward( request, response );
+			}else if(request.getParameterValues("formname")[0].equals("logout")){
+				HttpSession session = request.getSession();
+				tools.logout(session, this.getServletContext(), request, response);
 			}else{
 			request.setAttribute("buttonName", "Youslicked");
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );}

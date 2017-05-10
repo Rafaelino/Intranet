@@ -6,9 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.test.utils.Employe;
-import com.test.utils.Project;
+import com.test.beans.Employe;
+import com.test.beans.Project;
+import com.test.utils.CassandraEmployeUtils;
+import com.test.utils.CassandraProjetUtils;
+import com.test.utils.Tools;
 
 /**
  * Servlet implementation class ProjectApp
@@ -16,7 +20,8 @@ import com.test.utils.Project;
 @WebServlet("/ProjectApp")
 public class ProjectApp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	Tools tools = new Tools();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -29,8 +34,11 @@ public class ProjectApp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilProjet.jsp" ).forward( request, response );
+		// TODO Auto-generated method stub	
+		HttpSession session = request.getSession();
+		if(tools.isSessionOverRedirection(session, this.getServletContext(), request, response)){}else{
+		
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilProjet.jsp" ).forward( request, response );}
 	}
 
 	/**

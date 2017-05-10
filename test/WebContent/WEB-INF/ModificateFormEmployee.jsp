@@ -20,27 +20,27 @@
                 <tbody>
                     <tr>
                         <td>Nom</td>
-                        <td><input type="text" name="nom" value="${nom}"></td>
+                        <td><input type="text" name="nom" value="${employe.nom}"></td>
                     </tr>
                     <tr>
                         <td>Prénom</td>
-                        <td><input type="text" name="prenom" value="${prenom}" /></td>
+                        <td><input type="text" name="prenom" value="${employe.prenom}" /></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" name="email" value="${email}" /></td>
+                        <td><input type="text" name="email" value="${employe.email}" /></td>
                     </tr>
                     <tr>
                         <td>Adresse</td>
-                        <td><input type="text" name="adresse" value="${adresse}" /></td>
+                        <td><input type="text" name="adresse" value="${employe.adresse}" /></td>
                     </tr>
                     <tr>
                         <td>Mot de passe</td>
-                        <td><input type="password" name="motdepasse" value="${motdepasse}" /></td>
+                        <td><input type="password" name="motdepasse" value="${employe.password}" /></td>
                     </tr>
                      <tr>
                         <td>Date de naissance (jjmmaaaa)</td>
-                        <td><input type="text" name="datedenaissance" value="${datedenaissance}" /></td>
+                        <td><input type="text" name="datedenaissance" value="${employe.dateDeNaissance}" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Enregistrer" /></td>

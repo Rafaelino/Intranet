@@ -6,8 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.test.utils.Employe;
+import com.test.beans.Employe;
+import com.test.utils.CassandraEmployeUtils;
+import com.test.utils.Tools;
 
 /**
  * Servlet implementation class CreateApp
@@ -15,6 +18,7 @@ import com.test.utils.Employe;
 @WebServlet("/CreateApp")
 public class EmployeApp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Tools tools = new Tools();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,8 +34,11 @@ public class EmployeApp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
-		System.out.println("here");
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilEmploye.jsp" ).forward( request, response );
+		HttpSession session = request.getSession();
+		if(tools.isSessionOverRedirection(session, this.getServletContext(), request, response)){}else{
+	
+		request.setAttribute("admin", app.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]).getAdmin());
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilEmploye.jsp" ).forward( request, response );}
 	}
 
 	/**
@@ -39,6 +46,8 @@ public class EmployeApp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
+		HttpSession session = request.getSession();
+		request.setAttribute("admin", app.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]).getAdmin());
 		if(request.getParameterValues("formname")!=null){
 			if(request.getParameterValues("formname")[0].equals("create")){
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/CreateEmploye.jsp" ).forward( request, response );
@@ -64,14 +73,14 @@ public class EmployeApp extends HttpServlet {
 				request.setAttribute("adresse", employe.getAdresse());
 				System.out.println(employe.getPassword());
 				request.setAttribute("motdepasse", employe.getPassword());
-				request.setAttribute("datedenaissance", employe.getDateDeNaissance());
+				request.setAttribute("employe", employe);
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateFormEmployee.jsp" ).forward( request, response );
 			}else if(request.getParameterValues("formname")[0].equals("modificateform")){
 				Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),request.getParameter("motdepasse"));
 				app.modifierEmploye(employe);
 				doGet(request, response);
 			}
-			}
+			}	
 		
 	}
 

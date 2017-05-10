@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.test.beans;
 
 import java.util.List;
 
@@ -16,10 +16,33 @@ public class Employe {
 	private String email;
 	private String adresse;
 	private String password;
+	private String admin;
 	private List<String> projects;
 	
 	public List<String> getProjects() {
 		return projects;
+	}
+
+	public Employe(String username, String nom, String prenom, String dateDeNaissance, String email, String adresse,
+			String password, List<String> projects, String admin) {
+		super();
+		this.username = username;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateDeNaissance = dateDeNaissance;
+		this.email = email;
+		this.adresse = adresse;
+		this.password = password;
+		this.admin = admin;
+		this.projects = projects;
+	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 
 	public void setProjects(List<String> projects) {

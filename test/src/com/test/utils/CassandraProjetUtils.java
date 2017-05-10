@@ -1,4 +1,4 @@
-package com.test.servlets;
+package com.test.utils;
 
 
 import java.util.ArrayList;
@@ -8,6 +8,9 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.test.beans.Employe;
+import com.test.beans.Project;
+import com.test.beans.ProjectForEmploye;
 import com.test.utils.*;
 
 public class CassandraProjetUtils {
@@ -27,6 +30,8 @@ public class CassandraProjetUtils {
 	         String cqlInsert = "INSERT INTO myfirstcassandradb.projects(projectlist, name, description) VALUES (null,'"+projet.getNom()+"','"+projet.getDescription().replace("'", "''")+"')";	     
 	         System.out.println(cqlInsert);
 	         session.execute(cqlInsert);
+		      session.close();
+
 	       	 return true;//L'employé est ajouté dans la base.
 		}
 		
@@ -43,6 +48,8 @@ public class CassandraProjetUtils {
 	         for (int i = 0; i < res.size(); i++) {  	
 	        	resultat.add(res.get(i).getString(0));			
 			}
+		      session.close();
+
 	         cluster.close();
 	         return resultat;
 		}
@@ -72,6 +79,8 @@ public class CassandraProjetUtils {
 	        	 }
 	         }
 	         resultat.remove(0);
+		      session.close();
+
 	         cluster.close();
 	         return resultat;
 		}
@@ -101,6 +110,7 @@ public class CassandraProjetUtils {
 	        	 }
 	         }
 	         resultat.remove(0);
+	         session.close();
 	         cluster.close();
 	         return resultat;
 		}
@@ -112,7 +122,7 @@ public class CassandraProjetUtils {
 	        String cqlWhereName = "SELECT * FROM myfirstcassandradb.projects WHERE name = '" + name +"'";
 	        List<Row> resultList  = session.execute(cqlWhereName).all();
 		        Project repProject = new Project(resultList.get(0).getString(0),resultList.get(0).getString(1));
-	    
+		    session.close();
 	        cluster.close();
 	        return repProject;
 		}
@@ -126,11 +136,13 @@ public class CassandraProjetUtils {
 	         if(session.execute(cqlwhere).all().get(0).getString(0).equals(projet.getNom())){
 	        	 String cqlUpdate = "UPDATE myfirstcassandradb.projects SET description = '"+projet.getDescription().replaceAll("'", "''")+"' WHERE name ='"+projet.getNom()+"'";
 	        	System.out.println(cqlUpdate);	
-	        	 session.execute(cqlUpdate);
+	        	 session.execute(cqlUpdate); 
+	        	 session.close();
 	        		return true;//L'employé a été modifié
 	         }else{    
 	        	    return false;//L'employé n'a pas été modifié il n'existe pas dans la base 
 	         }
+	        
 		}
 		public Boolean addEmployeForProject(Project project, Employe employe, String role){
 			  Cluster cluster = Cluster.builder()
@@ -140,7 +152,8 @@ public class CassandraProjetUtils {
 		      String cqladdprojectforemploye = "UPDATE myfirstcassandradb.projects SET employelist = employelist + [{name: '"+employe.getUsername()+"', role: '"+role+"'}] WHERE name = '"+project.getNom()+"'";
 			  System.out.println(cqladdprojectforemploye);
 		      session.execute(cqladdprojectforemploye);
-			  
+		      session.close();
+		      cluster.close();
 			  return false;
 		  }
 		
@@ -163,6 +176,8 @@ public class CassandraProjetUtils {
 		         
 	        	 }
 	         }
+		      session.close();
+
 	         cluster.close();       
 			return false;
 		}
@@ -211,7 +226,8 @@ public class CassandraProjetUtils {
 	         String cqldelemployeforproject = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist - [{name: '"+projectforemploye.getName()+"', role: '"+projectforemploye.getRole()+"', datedebut: '"+projectforemploye.getDateDebut()+"', datefin: '"+projectforemploye.getDateFin()+"'}] WHERE username = '"+employe.getUsername()+"'";
 	         System.out.println(cqldelemployeforproject);
 	         session.execute(cqldelemployeforproject);
-			
+		      session.close();
+
 			return false;
 		}
 }

@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.test.beans;
 
 import java.util.UUID;
 

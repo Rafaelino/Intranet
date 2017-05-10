@@ -16,10 +16,6 @@
 			 <input type="hidden" name="formname" value="modificate"/>
    			 <button name="modificate" value="upvote">Modifier un projet</button>
 		</form>
-		<form name="delete"  method="post">
-			 <input type="hidden" name="formname" value="delete"/>
-   			 <button name="delete" value="upvote">Supprimer un projet</button>
-		</form>
 <form action ="testapp">
    			 <button>Retour acceuil</button>
 </form>

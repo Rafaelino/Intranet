@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.test.beans;
 
 public class EmployeSimple {
 private String name;
