@@ -6,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+ <script src="vis/dist/vis.js"></script>
+  <link href="vis/dist/vis.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Répartition des projets par employé</title>
 	<meta charset="utf-8">
@@ -59,6 +61,7 @@
 	 
 	</c:forEach>
 </ul>
+<div id="visualization"></div>
 </body>
 <script>
 if( '${admin}' == "yes"){
@@ -67,5 +70,22 @@ if( '${admin}' == "yes"){
 	}
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
+	
+	var container = document.getElementById('visualization');
+
+	  // Create a DataSet (allows two way data-binding)
+	  var items = new vis.DataSet([
+	    {id: 1, content: 'item 1', start: '2013-04-20'},
+	    {id: 2, content: 'item 2', start: '2013-04-14'},
+	    {id: 3, content: 'item 3', start: '2013-04-18'},
+	    {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
+	    {id: 5, content: 'item 5', start: '2013-04-25'},
+	    {id: 6, content: 'item 6', start: '2013-04-27'}
+	  ]);
+
+	  // Configuration for the Timeline
+	  var options = {};
+
+	  // Create a Timeline
 </script>
 </html>
