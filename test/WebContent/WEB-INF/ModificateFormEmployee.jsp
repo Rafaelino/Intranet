@@ -3,59 +3,89 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+ <link rel="stylesheet" href="assets/stylemain.css">
+  <link rel="stylesheet" href="assets/pure.css">
+ 
+ <link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post">
+<header class="header-login-signup">
+
+	<div class="header-limiter">
+
+		<h1><img src="assets/everbe.png" width="110" height="70"  alt="arrow" ></h1>
+
+		<nav>
+			<a href="/test/testapp">Accueil</a>
+			<a href="/test/drawapp">Afficher les projets</a>
+			<a href="/test/employeapp" id="adminemploye"></a>
+			<a href="/test/projectapp" id="adminproject"></a>
+			<!-- <a href="#">Pricing</a> -->
+		</nav>
+		<ul>
+			 <li id="welcome"></li>
+			 <li><a href="/test/myaccompt">Mon compte</a></li>
+			 <li> </li>
+			<!--<li><a href="#">Sign up</a></li>-->
+		</ul>
+
+	</div>
+
+</header>
+<div class="main">
+<h2>Modifier l'employé</h2>
+<form method="post" class="pure-form pure-form-aligned">
 	<input type="hidden" name="formname" value="modificateform"/>
-            <center>
-            <table border="1" width="30%" cellpadding="5">
-                <thead>
-                    <tr>
-                        <th colspan="2">Mofifier informations Employé : </th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr>
-                        <td>Nom</td>
-                        <td><input type="text" name="nom" value="${employe.nom}"></td>
-                    </tr>
-                    <tr>
-                        <td>Prénom</td>
-                        <td><input type="text" name="prenom" value="${employe.prenom}" /></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="email" value="${employe.email}" /></td>
-                    </tr>
-                    <tr>
-                        <td>Adresse</td>
-                        <td><input type="text" name="adresse" value="${employe.adresse}" /></td>
-                    </tr>
-                    <tr>
-                        <td>Mot de passe</td>
-                        <td><input type="password" name="motdepasse" value="${employe.password}" /></td>
-                    </tr>
-                     <tr>
-                        <td>Date de naissance (jjmmaaaa)</td>
-                        <td><input type="text" name="datedenaissance" value="${employe.dateDeNaissance}" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Enregistrer" /></td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-            </center>
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="name">Nom</label>
+            <input id="name" name="nom" type="text" value="${employe.nom}">
+            <span class="pure-form-message-inline"></span>
+        </div>
+         <div class="pure-control-group">
+            <label for="name">Prénom</label>
+            <input id="name" name="prenom" type="text" value="${employe.prenom}">
+            <span class="pure-form-message-inline"></span>
+        </div>
+         <div class="pure-control-group">
+            <label for="name">Email</label>
+            <input id="name" name="email" type="text" value="${employe.email}">
+            <span class="pure-form-message-inline"></span>
+        </div>
+         <div class="pure-control-group">
+            <label for="name">Adresse</label>
+            <input id="name" name="adresse" type="text" value="${employe.adresse}">
+            <span class="pure-form-message-inline"></span>
+        </div>
+         <div class="pure-control-group">
+            <label for="name">Date de Naissance</label>
+            <input id="name" name="datedenaissance" type="text" value="${employe.dateDeNaissance}">
+            <span class="pure-form-message-inline"></span>
+        </div>
+         <div class="pure-control-group">
+            <input class ="btn" type="submit" value="Enregistrer" />
+            <span class="pure-form-message-inline"></span>
+        </div>
+        <div class="pure-control-group">
+            <button class ="btn" type="button" name="back" onclick="history.back()">Retour</button>
+            <span class="pure-form-message-inline"></span>
+        </div>
+        </fieldset>
         </form>
-        <form method="post">
-        <input type="hidden" name="formname" value="suppression"/>
-        <input type="hidden" name="nom" value="${username}">
-        <center>
-        Autre action :  <td><input type="submit" value="Supprimer l'employé"/></td>
-        </center>
+         <form method="post" class="pure-form pure-form-aligned">
+         <fieldset>
+	        <input type="hidden" name="formname" value="suppression"/>
+	        <input type="hidden" name="nom" value="${username}">
+	       
+	       <input class="btn" type="submit" value="Supprimer l'employé"/>
+	      
+        </fieldset>
         </form>
+        </div>
+        
+
+       
 </body>
 </html>

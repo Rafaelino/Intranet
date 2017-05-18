@@ -1,7 +1,12 @@
 package com.test.servlets;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -94,7 +99,23 @@ public class Connexion extends HttpServlet{
 		 		String email = payload.getEmail();
 		 		boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
 		 		String name = (String) payload.get("name");
-		 		String pictureUrl = (String) payload.get("picture");
+		 		
+		 		URL pictureUrl = new URL((String) payload.get("picture"));
+		 		InputStream in = new BufferedInputStream(pictureUrl.openStream());
+		 		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		 		byte[] buf = new byte[1024];
+		 		int n = 0;
+		 		while (-1!=(n=in.read(buf)))
+		 		{
+		 		   out.write(buf, 0, n);
+		 		}
+		 		out.close();
+		 		in.close();
+		 		byte[] finalpic = out.toByteArray();
+		 		FileOutputStream fos = new FileOutputStream("profilepicture"+email.split("@")[0]+".jpg");
+		 		fos.write(finalpic);
+		 		fos.close();
+		 		
 		 		String locale = (String) payload.get("locale");
 		 		String familyName = (String) payload.get("family_name");
 		 		String givenName = (String) payload.get("given_name");

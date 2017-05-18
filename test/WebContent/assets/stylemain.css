@@ -27,20 +27,51 @@ a.read-more { background-color: #93291b; border: 1px solid #333333; border-radiu
 
 a.read-more:hover { background-color: #be3523; border-radius: 3px 3px 3px 3px; text-decoration: none; }
 
+.main ul {
+ 
+}
+ 
+.main li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  
+}
+ 
+.main li:last-child {
+  border: none;
+}
+ 
+.main li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.main li a:hover {
+  font-size: 30px;
+  background: #f6f6f6;
+}
+
 .btn {
   -webkit-border-radius: 8;
   -moz-border-radius: 8;
   border-radius: 8px;
   font-family: Arial;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 15px;
   background: #465e6e;
   padding: 5px 20px 5px 20px;
   text-decoration: none;
 }
 form, table {
      display:inline;
-     margin:2px;
+     margin:0px;
      padding:0px;
 }
 .btn_small {
@@ -62,12 +93,19 @@ form, table {
   background: #6b8291;
   text-decoration: none;
 }
+@import "compass/css3";
+
+
 .main{
 	position: absolute;
-	top: 30%;
+	top: 20%;
 	left:20%;
 }
-
+.profilepic{
+	position: absolute;
+	top: 17%;
+	left:7%;
+}
 .main.idbutton{
 	position: absolute;
 	top: 30%;

@@ -44,8 +44,8 @@ public class TestApp extends HttpServlet {
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/Reauthentification.jsp" ).forward( request, response );
 		}
 		
-	}
-		//this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
+	}else{
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/Reauthentification.jsp").forward( request, response );}
 }
 
 	/**

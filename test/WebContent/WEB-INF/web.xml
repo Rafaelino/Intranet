@@ -33,9 +33,13 @@
     <servlet-name>DrawApp</servlet-name>
     <servlet-class>com.test.servlets.DrawApp</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>MyAccompt</servlet-name>
     <servlet-class>com.test.servlets.MyAccompt</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>AutoComplete</servlet-name>
+    <servlet-class>com.test.servlets.AutoComplete</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
@@ -61,8 +65,12 @@
     <servlet-name>DrawApp</servlet-name>
     <url-pattern>/drawapp</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>MyAccompt</servlet-name>
     <url-pattern>/myaccompt</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AutoComplete</servlet-name>
+    <url-pattern>/autocomplete</url-pattern>
   </servlet-mapping>
 </web-app>

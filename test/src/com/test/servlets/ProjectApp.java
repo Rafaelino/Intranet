@@ -73,6 +73,14 @@ public class ProjectApp extends HttpServlet {
 				doGet(request, response);
 				
 				//Inutile 
+			}else if(request.getParameterValues("formname")[0].equals("deleteproject")){
+			
+				request.setAttribute("projectname",request.getParameter("nom"));
+				app.deleteProject(app.getProjectByName(request.getParameter("nom")));
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilProjet.jsp").forward( request, response );
+				
+				
+				//Page de modification des membres d'un projet 
 			}else if(request.getParameterValues("formname")[0].equals("modificateteamform")){
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",request.getParameter("nom"));

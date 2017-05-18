@@ -27,7 +27,7 @@ public class CassandraProjetUtils {
 		        	 return false;//L'employé n'a pas été ajouté il est déja présent dans la base
 		         }}
 		        	
-	         String cqlInsert = "INSERT INTO myfirstcassandradb.projects(projectlist, name, description) VALUES (null,'"+projet.getNom()+"','"+projet.getDescription().replace("'", "''")+"')";	     
+	         String cqlInsert = "INSERT INTO myfirstcassandradb.projects(name, description, employelist) VALUES ('"+projet.getNom()+"','"+projet.getDescription().replace("'", "''")+"',null)";	     
 	         System.out.println(cqlInsert);
 	         session.execute(cqlInsert);
 		      session.close();
@@ -193,7 +193,28 @@ public class CassandraProjetUtils {
 			
 			return false;
 		}
-		
+		public void deleteProject(Project project){
+			 Cluster cluster = Cluster.builder()
+	                 .addContactPoints("127.0.0.1")
+	                 .build();
+	         Session session = cluster.connect();
+	         CassandraEmployeUtils app = new CassandraEmployeUtils();
+	         List<Employe> employelist = app.getAllEmployesObjects();
+	         for (int i = 0; i < employelist.size(); i++) {
+				List<String> projectlist = employelist.get(i).getProjects();
+				for (int j = 0; j < projectlist.size(); j++) {
+					if(projectlist.get(j).split(";")[0].equals(project.getNom())){
+							ProjectForEmploye projectforemploye = new ProjectForEmploye(projectlist.get(j).split(";")[1], projectlist.get(j).split(";")[0], projectlist.get(j).split(";")[2], projectlist.get(j).split(";")[3]);
+							deleteProjectForEmploye(projectforemploye, employelist.get(i));
+					}
+				}
+			}
+	       
+	         String cqldeleteproject="DELETE FROM myfirstcassandradb.projects WHERE name='"+project.getNom()+"'";
+	         
+	         session.execute(cqldeleteproject);
+			
+		}
 		public ProjectForEmploye getProjectForEmploye(Employe employe, Project project, String role){
 			 Cluster cluster = Cluster.builder()
 	                 .addContactPoints("127.0.0.1")
@@ -217,6 +238,31 @@ public class CassandraProjetUtils {
 	         cluster.close();    
 	         return null;
 		}
+		public List<ProjectForEmploye> getProjectsForEmploye(Employe employe){
+			 Cluster cluster = Cluster.builder()
+	                 .addContactPoints("127.0.0.1")
+	                 .build();
+	         Session session = cluster.connect();
+	         String cqlStatementselect = "SELECT * FROM myfirstcassandradb.employees WHERE username = '"+employe.getUsername()+"'";
+	         List<Row> res;
+	         res = session.execute(cqlStatementselect).all();
+	         List<com.datastax.driver.core.UDTValue> listemployeres = new ArrayList<com.datastax.driver.core.UDTValue>();
+	         listemployeres = res.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
+	         List<ProjectForEmploye> projectforemployelist = new ArrayList<ProjectForEmploye>();
+	         if(!(listemployeres).isEmpty()){
+	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
+	        		
+	        			ProjectForEmploye projectforemploye = new ProjectForEmploye(listemployeres.get(i).getString("role"), listemployeres.get(i).getString("name"), listemployeres.get(i).getString("datedebut"), listemployeres.get(i).getString("datefin"));
+	        			projectforemployelist.add(projectforemploye);
+	        		 }
+		         
+	        	 } 
+	         session.close();
+	         cluster.close();    
+	         return projectforemployelist;
+	         }
+		
+	        
 		
 		public Boolean deleteProjectForEmploye(ProjectForEmploye projectforemploye, Employe employe){
 			 Cluster cluster = Cluster.builder()

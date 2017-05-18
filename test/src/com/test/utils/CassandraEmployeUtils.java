@@ -2,6 +2,7 @@ package com.test.utils;
 
 import com.test.beans.Employe;
 import com.test.beans.Project;
+import com.test.beans.ProjectForEmploye;
 import com.test.utils.*;
 import java.util.*;
 import com.datastax.driver.core.Cluster;
@@ -133,6 +134,11 @@ public class CassandraEmployeUtils
                  .addContactPoints("127.0.0.1")
                  .build();
          Session session = cluster.connect();
+         CassandraProjetUtils app = new CassandraProjetUtils();
+         List<String> projectslisting = employe.getProjects();
+         for (int i = 0; i < projectslisting.size(); i++) {
+        	  app.deleteEmployeForProject(employe, app.getProjectByName(projectslisting.get(i).split(";")[0]), projectslisting.get(i).split(";")[1]);
+		}      
          String cqlwhere = "SELECT * FROM myfirstcassandradb.employees WHERE username = '" + employe.getUsername() +"'";
          if(session.execute(cqlwhere).all().get(0).getString(0).equals(employe.getUsername())){
         	 String cqldelete = "DELETE FROM myfirstcassandradb.employees WHERE username IN ('"+ employe.getUsername() +"')";
@@ -197,5 +203,27 @@ public class CassandraEmployeUtils
         cluster.close();       
 		return false;
   }
+ public List<Employe> getEmployeForProject(ProjectForEmploye project){
+	 Cluster cluster = Cluster.builder()
+             .addContactPoints("127.0.0.1")
+             .build();
+     Session session = cluster.connect();
+     String cqlStatementselect = "SELECT * FROM myfirstcassandradb.projects WHERE name = '"+project.getName()+"'";
+     List<Row> res;
+     res = session.execute(cqlStatementselect).all();
+     List<com.datastax.driver.core.UDTValue> listemployeres = new ArrayList<com.datastax.driver.core.UDTValue>();
+     listemployeres = res.get(0).getList("employelist",com.datastax.driver.core.UDTValue.class);
+     List<Employe> employelist = new ArrayList<Employe>();
+     if(!(listemployeres).isEmpty()){
+    	 for (int i = 0; i < listemployeres.size(); i++) {
+    		 	Employe employe = getEmployeByUsername(listemployeres.get(i).getString("name"));
+    			employelist.add(employe);
+    		 }
+         
+    	 } 
+     session.close();
+     cluster.close();    
+     return employelist;
+     }
  
 }

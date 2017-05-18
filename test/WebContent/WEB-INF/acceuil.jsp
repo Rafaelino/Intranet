@@ -5,6 +5,17 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <head>
+<link rel="stylesheet" type="text/css" href="assets/jquery.autocomplete.css" />
+<script src="http://www.google.com/jsapi"></script>
+<script>
+	google.load("jquery", "1");
+</script>
+<script src="js/jquery.autocomplete.js"></script>
+<style>
+	input {
+	font-size: 80%;
+	}
+</style>
  <link rel="stylesheet" href="assets/stylemain.css">
  	<link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -31,9 +42,16 @@
 			<a href="/test/drawapp">Afficher les projets</a>
 			<a href="/test/employeapp" id="adminemploye"></a>
 			<a href="/test/projectapp" id="adminproject"></a>
+		
+
+			<script>
+			
+			</script>
 			<!-- <a href="#">Pricing</a> -->
 		</nav>
 		<ul>
+			<li><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
+			<span class="ico ico-mglass"></span>
 			 <li id="welcome"></li>
 			 <li><a href="/test/myaccompt">Mon compte</a></li>
 			 <li> </li>
@@ -107,7 +125,11 @@
 				 document.getElementById("adminproject").innerHTML='Gérer les projets';
 				}
 			
+			$("#employe").autocomplete("getData.jsp");
 		
+			
+			
+			
 			</script>
         
        
