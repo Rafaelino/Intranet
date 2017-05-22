@@ -46,15 +46,11 @@
 
 </header>
 <form name="create" method="post">
-			 <input type="hidden" name="formname" value="projects"/>
-   			 <button class ="btn_small" name="create" value="upvote">Vue par projets</button>
+			 <input type="hidden" name="formname" value="employes"/>
+   			 <button class ="btn_small" name="create" value="upvote">Vue par employés</button>
 		</form>
 		
-		<form name="modificate"  method="post">
-			 <input type="hidden" name="formname" value="employes"/>
-   			 <button class ="btn_small"  name="modificate" value="upvote">Vue par employé</button>
-		</form>
-<ul>
+	<ul>
 
 	<c:forEach items="${employes}" var="element"> 
 

@@ -18,7 +18,16 @@ public class Employe {
 	private String password;
 	private String admin;
 	private List<String> projects;
+	private String projectlistdraw;
 	
+	public String getProjectlistdraw() {
+		return projectlistdraw;
+	}
+
+	public void setProjectlistdraw(String projectlistdraw) {
+		this.projectlistdraw = projectlistdraw;
+	}
+
 	public List<String> getProjects() {
 		return projects;
 	}

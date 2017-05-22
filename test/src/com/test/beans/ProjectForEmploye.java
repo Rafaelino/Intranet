@@ -6,7 +6,7 @@ public class ProjectForEmploye {
 	private String name;
 	private String dateDebut;
 	private String dateFin;
-	
+
 	public ProjectForEmploye(String role, String name, String dateDebut, String dateFin) {
 		this.role = role;
 		this.name = name;

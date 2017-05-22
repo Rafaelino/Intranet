@@ -152,7 +152,23 @@ public class CassandraEmployeUtils
         	
 	
 	}
-	
+	public String drawStringBuilder(Employe employe){
+		List<String> projectlist = employe.getProjects();
+		String drawstring=employe.getUsername()+";";
+		if(!(projectlist.isEmpty())){
+			drawstring += "[";
+		}
+		for (int i = 0; i < projectlist.size()-1; i++) {
+			String[] projecttab = projectlist.get(i).split(";");
+			drawstring += "{id: "+i+", content: '"+projecttab[0]+"', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'},";
+		}
+		if(!(projectlist.isEmpty())){
+			String[] projecttab = projectlist.get(projectlist.size()-1).split(";");
+			drawstring += "{id: "+(projectlist.size()-1)+", content: '"+projecttab[0]+"', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
+			drawstring += "]@";
+		}
+		return drawstring;
+	}
 	public Boolean modifierEmploye(Employe employe){
 		 Cluster cluster = Cluster.builder()
                  .addContactPoints("127.0.0.1")

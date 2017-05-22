@@ -1,3 +1,4 @@
+<%@page import="com.test.beans.Employe"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
@@ -45,33 +46,60 @@
 	</div>
 
 </header>
+<script>
+function ploting(divname,projects){
+	var container = divname;
+	var myobj = JSON.parse(JSON.stringify(projects));
+	var data = eval('(' +projects+ ')');
+	  var items = new vis.DataSet(data);
+	 
+	  // Configuration for the Timeline
+	  var options = {};
+	   // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
+	}
+	
+	</script>
 <form name="create" method="post">
 			 <input type="hidden" name="formname" value="projects"/>
    			 <button class ="btn_small" name="create" value="upvote">Vue par projets</button>
 		</form>
 		
-		<form name="modificate"  method="post">
-			 <input type="hidden" name="formname" value="employes"/>
-   			 <button class ="btn_small"  name="modificate" value="upvote">Vue par employé</button>
-		</form>
-<ul>
+	<ul>
 
-	<c:forEach items="${employes}" var="element"> 
-
+	<c:forEach items="${employes}" var="element" varStatus="employeloop"> 
 		
+				<script>
+			  			var projectlisting = "[";
+			  	</script>
 			 <li>
-			  ${element.nom} ${element.prenom}:    <c:forEach items="${element.projects}" var="projects"> 
+			  ${element.nom} ${element.prenom}:    
+			  
+			  <c:forEach items="${element.projects}" var="projects" varStatus="loop"> 
 			  			
 			  			<p>
 			  			<c:set var="string" value="${fn:split(projects,';')}" />
-			  			${string[0]} en tant que ${string[1]} du ${string[2]} au ${string[3]}
-			  			</p>
+			  			<c:set var="uname" value="${element.username}" />
+			  			<c:set var="projectlistout" value="{id: ${loop.index}, content: '${string[0]}', start: '${string[2]}', end: '${string[3]}'}," />
+			  			${string[0]} en tant que ${string[1]} du ${string[2]} au ${string[3]}	
+	  			
+			  			<input type="hidden" id="listing" name="x" value="${projectdrawlisting}">
+			 
+			  			
 			  </c:forEach>
+			  
 			 </li>
+
+			 
+		
+			 <div class="drawing" id="${element.username}" value="${element.username}"></div>
+			
 	 
 	</c:forEach>
+	
 </ul>
-<div id="visualization"></div>
+
+<div class="drawing" id="visualization"></div>
 </body>
 <script>
 if( '${admin}' == "yes"){
@@ -81,23 +109,14 @@ if( '${admin}' == "yes"){
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	
-	var container = document.getElementById('visualization');
 
-	  // Create a DataSet (allows two way data-binding)
-	  var items = new vis.DataSet([
-	    {id: 1, content: 'item 1', start: '2013-04-20'},
-	    {id: 2, content: 'item 2', start: '2013-04-14'},
-	    {id: 3, content: 'item 3', start: '2013-04-18'},
-	    {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
-	    {id: 5, content: 'item 5', start: '2013-04-25'},
-	    {id: 6, content: 'item 6', start: '2013-04-27'}
-	  ]);
+	
+	 var input = document.getElementById("listing").value;
 
-	  // Configuration for the Timeline
-	  var options = {};
-
-	  // Create a Timeline
-	   // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
+			 var fields = input.split('@');
+			for (var i = 0; i < fields.length; i++) {
+				var projects = fields[i].split(';');
+				ploting(document.getElementById(projects[0]),projects[1]);
+			}
 </script>
 </html>
