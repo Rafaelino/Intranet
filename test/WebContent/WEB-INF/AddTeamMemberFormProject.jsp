@@ -68,7 +68,10 @@
 </c:forEach></p>
 </ul>
 </form>
-<form method = "post">
+
+        <div class="pure-g">
+        	  <div class="pure-u-1 pure-u-md-1-3">
+<form method = "post" class="pure-form pure-form-stacked">
  <input type="hidden" name="formname" value="saveteammember"/>
  <input type="hidden" name="nom" value="${projectname}"/>
 Employé :  <select name="listemploye">
@@ -89,9 +92,23 @@ en tant que :
 	  </select>
 du    <input type="date" name="datedebut" />
 au    <input type="date" name="datefin" /> 
+implication <select id="select" name="implication")>
+  <option value="10%">10%</option> 
+  <option value="20%">20%</option>
+   <option value="30%">30%</option>
+    <option value="40%">40%</option>
+     <option value="50%">50%</option>
+      <option value="60%">60%</option>
+       <option value="70%">70%</option>
+        <option value="80%">80%</option>
+         <option value="90%">90%</option>
+  <option value="100%" selected>100%</option>
+</select>
  <input type="submit" class="btn" value="Enregistrer" > 
  <p></p>
 </form>
+</div>
+</div>
  <form action ="testapp">
    			 <button class="btn">Accueil</button>
 </form>

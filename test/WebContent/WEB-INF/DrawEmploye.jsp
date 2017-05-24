@@ -48,6 +48,7 @@
 </header>
 <script>
 function ploting(divname,projects){
+	//alert(projects.toString())
 	var container = divname;
 	var myobj = JSON.parse(JSON.stringify(projects));
 	var data = eval('(' +projects+ ')');
@@ -112,11 +113,12 @@ if( '${admin}' == "yes"){
 
 	
 	 var input = document.getElementById("listing").value;
-
+		
 			 var fields = input.split('@');
 			for (var i = 0; i < fields.length; i++) {
-				var projects = fields[i].split(';');
-				ploting(document.getElementById(projects[0]),projects[1]);
+				var projects = fields[i].split(';');	
+				if(projects[1].length > 0){
+				ploting(document.getElementById(projects[0]),projects[1]);}
 			}
 </script>
 </html>

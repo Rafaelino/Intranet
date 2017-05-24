@@ -6,12 +6,22 @@ public class ProjectForEmploye {
 	private String name;
 	private String dateDebut;
 	private String dateFin;
+	private String implication;
 
-	public ProjectForEmploye(String role, String name, String dateDebut, String dateFin) {
+	public String getImplication() {
+		return implication;
+	}
+
+	public void setImplication(String implication) {
+		this.implication = implication;
+	}
+
+	public ProjectForEmploye(String role, String name, String dateDebut, String dateFin, String implication) {
 		this.role = role;
 		this.name = name;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
+		this.implication = implication;
 	}
 	
 	public String getRole() {

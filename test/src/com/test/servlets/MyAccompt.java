@@ -46,7 +46,7 @@ public class MyAccompt extends HttpServlet {
 		List<ProjectForEmploye> projectforemploye = app2.getProjectsForEmploye(me);
 		request.setAttribute("projects",projectforemploye);
 		for (int i = 0; i < projectforemploye.size(); i++) {
-			request.setAttribute("employelist"+projectforemploye.get(i).getName(),app.getEmployeForProject(projectforemploye.get(i)));
+			request.setAttribute("employelist"+projectforemploye.get(i).getName(),app.getEmployeForEmpProject(projectforemploye.get(i)));
 			System.out.println("->"+"employelist"+projectforemploye.get(i).getName());
 		}
 		
@@ -143,12 +143,13 @@ public class MyAccompt extends HttpServlet {
 			String employeName = request.getParameter("listemploye");
 			String datedebut = request.getParameter("datedebut");
 			String datefin = request.getParameter("datefin");
+			String implication = request.getParameter("implication");
 			request.setAttribute("employees", app2.getAllEmployes());
 			request.setAttribute("projectname",request.getParameter("nom"));
 			request.setAttribute("projects", app.getAllProjects());
 			if(!(app.employeAlreadyInProject(app2.getEmployeByUsername(employeName),app.getProjectByName(request.getParameter("nom"))))){
 				app.addEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), role);
-				app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role);
+				app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role,implication);
 			}
 			request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
 			request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
@@ -164,7 +165,7 @@ public class MyAccompt extends HttpServlet {
 			List<ProjectForEmploye> projectforemploye = app2.getProjectsForEmploye(me);
 			request.setAttribute("projects",projectforemploye);
 			for (int i = 0; i < projectforemploye.size(); i++) {
-				request.setAttribute("employelist"+projectforemploye.get(i).getName(),app.getEmployeForProject(projectforemploye.get(i)));
+				request.setAttribute("employelist"+projectforemploye.get(i).getName(),app.getEmployeForEmpProject(projectforemploye.get(i)));
 				System.out.println("->"+"employelist"+projectforemploye.get(i).getName());
 			}
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/viewaccompt.jsp" ).forward( request, response );

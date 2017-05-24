@@ -81,7 +81,30 @@ public class ProjectApp extends HttpServlet {
 				
 				
 				//Page de modification des membres d'un projet 
-			}else if(request.getParameterValues("formname")[0].equals("modificateteamform")){
+			}else if(request.getParameterValues("formname")[0].equals("modifyprojectforemploye")){
+				request.setAttribute("employename",request.getParameter("employename"));
+				request.setAttribute("projectname",request.getParameter("nom"));
+				System.out.println(request.getParameter("nom"));
+				request.setAttribute("project",app.getProjectByName(request.getParameter("nom")));
+				request.setAttribute("projectforemploye", app.getProjectForEmploye(app2.getEmployeByName(request.getParameter("employename")), app.getProjectByName(request.getParameter("nom")), request.getParameter("role")));
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateProjectForEmploye.jsp").forward( request, response );
+				
+				
+				//Page de modification des membres d'un projet 
+			}else if(request.getParameterValues("formname")[0].equals("saveprojectforemploye")){
+				request.setAttribute("employename",request.getParameter("employename"));
+				request.setAttribute("projectname",request.getParameter("nom"));
+				System.out.println(request.getParameter("nom"));
+				app.modifyEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByName(request.getParameter("employename")), request.getParameter("oldrole"), request.getParameter("role"));
+				app.modifyProjectForEmploye(app.getProjectForEmploye(app2.getEmployeByName(request.getParameter("employename")), app.getProjectByName(request.getParameter("nom")),request.getParameter("oldrole")), app.getProjectByName(request.getParameter("nom")), app2.getEmployeByName(request.getParameter("employename")), request.getParameter("datedebut"), request.getParameter("datefin"), request.getParameter("role"), request.getParameter("implication"));
+				request.setAttribute("project",app.getProjectByName(request.getParameter("nom")));
+				request.setAttribute("projectforemploye", app.getProjectForEmploye(app2.getEmployeByName(request.getParameter("employename")), app.getProjectByName(request.getParameter("nom")), request.getParameter("role")));
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilProjet.jsp").forward( request, response );
+				
+				
+				//Page de modification des membres d'un projet 
+			}
+			else if(request.getParameterValues("formname")[0].equals("modificateteamform")){
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",request.getParameter("nom"));
 				request.setAttribute("projects", app.getAllProjects());
@@ -137,12 +160,13 @@ public class ProjectApp extends HttpServlet {
 				String employeName = request.getParameter("listemploye");
 				String datedebut = request.getParameter("datedebut");
 				String datefin = request.getParameter("datefin");
+				String implication = request.getParameter("implication");
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",request.getParameter("nom"));
 				request.setAttribute("projects", app.getAllProjects());
 				if(!(app.employeAlreadyInProject(app2.getEmployeByUsername(employeName),app.getProjectByName(request.getParameter("nom"))))){
 					app.addEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), role);
-					app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role);
+					app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role,implication);
 				}
 				request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
 				request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));

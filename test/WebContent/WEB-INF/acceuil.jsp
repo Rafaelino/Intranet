@@ -35,7 +35,7 @@
 
 	<div class="header-limiter">
 
-		<h1><img src="assets/everbe.png" width="110" height="70"  alt="arrow" ></h1>
+		<h1><img src="assets/everbelogo.jpg" width="110" height="70"  alt="arrow" ></h1>
 
 		<nav>
 			<a href="/test/testapp">Accueil</a>
@@ -120,6 +120,7 @@
 			 }
 		
 			 document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
+			 //alert('${admin}');
 			if( '${admin}' == "yes"){
 				 document.getElementById("adminemploye").innerHTML='Gérer les employés';
 				 document.getElementById("adminproject").innerHTML='Gérer les projets';

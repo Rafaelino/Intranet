@@ -44,31 +44,48 @@
 </header>
 <div class="main">
 
-<form method = "post">
- <input type="hidden" name="formname" value="deleteteammember"/>
+
 <h1>Information pour le projet : ${projectname}</h1>
 <input type="hidden" name="nom" value="${projectname}"/>
 <p>Description du projet : <input type="text" name="description" value="${description}" /></p>
 <p><h3>Chef de Projet :</h3> <ul><c:forEach items="${managers}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  
- <li> ${element}   <input class="btn_small" type="submit" value="X" /> 
+ <li> ${element}  <form method = "post">
+ <input type="hidden" name="formname" value="deleteteammember"/> <input class="btn_small" type="submit" value="X" /> </form>
+ <form method = "post">
+ <input type="hidden" name="employename" value="${element}"/>  
+   <input type="hidden" name="nom" value="${projectname}"/>
+  <input type="hidden" name="role" value="Chef de projet"/>  
+ <input type="hidden" name="formname" value="modifyprojectforemploye"/>
+ <input class="btn_small"type="submit" value="modifier" />
+
+</form>
  </li>
  
 </c:forEach></p>
 </ul>
 </form>
 
-<form method = "post">
- <input type="hidden" name="formname" value="deleteteammemberchef"/>
+
  <input type="hidden" name="nom" value="${projectname}"/>
 <p><h3>Collaborateurs :</h3><ul><c:forEach items="${collaborateurs}" var="element"> 
  <input type="hidden" name="employename" value="${element}"/>  
- <li> ${element} <input class="btn_small"type="submit" value="X" />
+ <li> ${element} <form method = "post">
+ <input type="hidden" name="formname" value="deleteteammemberchef"/>
+ <input class="btn_small"type="submit" value="X" /> </form>
+ <form method = "post">
+  <input type="hidden" name="nom" value="${projectname}"/>
+  <input type="hidden" name="employename" value="${element}"/>  
+  <input type="hidden" name="role" value="Collaborateur"/> 
+ <input type="hidden" name="formname" value="modifyprojectforemploye"/>
+ <input class="btn_small"type="submit" value="modifier" />
+
+</form>
  </li>
  
-</c:forEach></p>
+</c:forEach>
 </ul>
-</form>
+
 <form method = "post">
    <input type="hidden" name="formname" value="addteammember"/>
      <input type="hidden" name="nom" value="${projectname}"/>

@@ -204,7 +204,7 @@ public class CassandraProjetUtils {
 				List<String> projectlist = employelist.get(i).getProjects();
 				for (int j = 0; j < projectlist.size(); j++) {
 					if(projectlist.get(j).split(";")[0].equals(project.getNom())){
-							ProjectForEmploye projectforemploye = new ProjectForEmploye(projectlist.get(j).split(";")[1], projectlist.get(j).split(";")[0], projectlist.get(j).split(";")[2], projectlist.get(j).split(";")[3]);
+							ProjectForEmploye projectforemploye = new ProjectForEmploye(projectlist.get(j).split(";")[1], projectlist.get(j).split(";")[0], projectlist.get(j).split(";")[2], projectlist.get(j).split(";")[3],projectlist.get(j).split(";")[4]);
 							deleteProjectForEmploye(projectforemploye, employelist.get(i));
 					}
 				}
@@ -223,13 +223,14 @@ public class CassandraProjetUtils {
 	         String cqlStatementselect = "SELECT * FROM myfirstcassandradb.employees WHERE username = '"+employe.getUsername()+"'";
 	         List<Row> res;
 	         CassandraEmployeUtils app2 = new CassandraEmployeUtils();
+	         System.out.println(employe.getUsername());
 	         res = session.execute(cqlStatementselect).all();
 	         List<com.datastax.driver.core.UDTValue> listemployeres = new ArrayList<com.datastax.driver.core.UDTValue>();
 	         listemployeres = res.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
 	         if(!(listemployeres).isEmpty()){
 	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
 	        		 if(listemployeres.get(i).getString("name").equals(project.getNom()) && listemployeres.get(i).getString("role").equals(role)){
-	        			ProjectForEmploye projectforemploye = new ProjectForEmploye(listemployeres.get(i).getString("role"), project.getNom(), listemployeres.get(i).getString("datedebut"), listemployeres.get(i).getString("datefin"));
+	        			ProjectForEmploye projectforemploye = new ProjectForEmploye(listemployeres.get(i).getString("role"), project.getNom(), listemployeres.get(i).getString("datedebut"), listemployeres.get(i).getString("datefin"),listemployeres.get(i).getString("implication"));
 	        			return projectforemploye;
 	        		 }
 		         
@@ -238,6 +239,34 @@ public class CassandraProjetUtils {
 	         cluster.close();    
 	         return null;
 		}
+		
+		 public Boolean modifyProjectForEmploye(ProjectForEmploye projectForEmploye,Project project, Employe employe, String datedebut, String datefin, String role, String implication){
+			  Cluster cluster = Cluster.builder()
+		              .addContactPoints("127.0.0.1")
+		              .build();
+		      Session session = cluster.connect();
+		      String cqlsubprojectforemploye = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist - [{name: '"+projectForEmploye.getName()+"', datedebut: '"+projectForEmploye.getDateDebut()+"', datefin: '"+projectForEmploye.getDateFin()+"', role : '"+projectForEmploye.getRole()+"', implication : '"+projectForEmploye.getImplication()+"'}] WHERE username = '"+employe.getUsername()+"'";
+		      String cqladdprojectforemploye = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist + [{name: '"+project.getNom()+"', datedebut: '"+datedebut+"', datefin: '"+datefin+"', role : '"+role+"', implication : '"+implication+"'}] WHERE username = '"+employe.getUsername()+"'";
+
+		      System.out.println(cqladdprojectforemploye);
+		      session.execute(cqlsubprojectforemploye);
+		      session.execute(cqladdprojectforemploye);
+			  session.close();
+			  return false;
+		  }
+		 public Boolean modifyEmployeForProject(Project project, Employe employe, String oldrole, String newrole){
+			  Cluster cluster = Cluster.builder()
+		              .addContactPoints("127.0.0.1")
+		              .build();
+		      Session session = cluster.connect();
+		      String cqlsubprojectforemploye = "UPDATE myfirstcassandradb.projects SET employelist = employelist - [{name: '"+employe.getUsername()+"', role: '"+oldrole+"'}] WHERE name = '"+project.getNom()+"'";
+		      String cqladdprojectforemploye = "UPDATE myfirstcassandradb.projects SET employelist = employelist + [{name: '"+employe.getUsername()+"', role: '"+newrole+"'}] WHERE name = '"+project.getNom()+"'";
+
+		      session.execute(cqlsubprojectforemploye);
+		      session.execute(cqladdprojectforemploye);
+			  session.close();
+			  return false;
+		  }
 		public List<ProjectForEmploye> getProjectsForEmploye(Employe employe){
 			 Cluster cluster = Cluster.builder()
 	                 .addContactPoints("127.0.0.1")
@@ -252,7 +281,7 @@ public class CassandraProjetUtils {
 	         if(!(listemployeres).isEmpty()){
 	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
 	        		
-	        			ProjectForEmploye projectforemploye = new ProjectForEmploye(listemployeres.get(i).getString("role"), listemployeres.get(i).getString("name"), listemployeres.get(i).getString("datedebut"), listemployeres.get(i).getString("datefin"));
+	        			ProjectForEmploye projectforemploye = new ProjectForEmploye(listemployeres.get(i).getString("role"), listemployeres.get(i).getString("name"), listemployeres.get(i).getString("datedebut"), listemployeres.get(i).getString("datefin"),listemployeres.get(i).getString("implication"));
 	        			projectforemployelist.add(projectforemploye);
 	        		 }
 		         

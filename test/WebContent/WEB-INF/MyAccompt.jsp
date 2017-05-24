@@ -45,7 +45,9 @@
 
 </header>
 <div class="profilepic">
-<img src="/test/profilepicture${employe.username}.jpg" alt="profilepicture${employe.username}.jpg" ></div>
+<img src="/test/profilepicture${employe.username}.jpg" alt="profilepicture${employe.username}.jpg" >
+</div>
+
 <div class = "main">
 <h1>Bienvenue dans votre espace </h1>
 <h2>Mes Informations 	<form method="post" >

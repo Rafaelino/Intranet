@@ -62,11 +62,12 @@ public class DrawApp extends HttpServlet {
 				}
 				String[] projectListPerEmploye = projectlisting.split("@");
 				for (int i = 0; i < projectListPerEmploye.length; i++) {
-					String uname = projectListPerEmploye[i].split(";")[0];
-					request.setAttribute(uname+"draw", projectListPerEmploye[i].split(";")[1]);
+					//String uname = projectListPerEmploye[i].split(";")[0];
+					//request.setAttribute(uname+"draw", projectListPerEmploye[i].split(";")[1]);
 				
-					System.out.println(projectListPerEmploye[i].split(";")[1]);
+					//System.out.println(projectListPerEmploye[i].split(";")[1]);
 				}
+				System.out.println(projectlisting);
 				request.setAttribute("projectdrawlisting", projectlisting);
 				
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawEmploye.jsp" ).forward( request, response );
