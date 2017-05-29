@@ -4,12 +4,59 @@ html{
 	background-color: #eaf0f2;
 }
 
+.box {
+	background-color:white;
+	width:200px;
+	height:150px;
+	display: flex;
+	margin-right: 3rem;
+	margin-top: 3rem;
+	border: 1.5px solid #d9d9d9;
+	flex-direction: column;
+	
+}
+
+.navigate {
+	display:flex;
+	flex-direction:row;
+}
+
+.boxlink {
+	text-align: center;
+	margin-bottom:1rem;
+}
+
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-icon {
+  width: 5em;
+  height: 5em;
+  display: block;
+  margin:auto;
+
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #d9d9d9;
+}
+
+.svg-icon circle {
+  stroke: #d9d9d9;
+  stroke-width: 1;
+}
+
 body{
 	font:14px/1.5 Arial, Helvetica, sans-serif;
 	padding:0;
 	margin:0;
+	color:black;
 }
 
+	
 .menu{
 	text-align: center;
 	padding-top: 25px;
@@ -111,3 +158,4 @@ body{
 .tz-link span{
 	color: #da431c;
 }
+

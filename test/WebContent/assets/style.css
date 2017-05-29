@@ -6,6 +6,15 @@ body{
   background: #1abc9d;
 }
 
+.box {
+	background-color:white;
+	width:50px;
+	height:50px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
 h1{
   color: #fff;
   text-align: center;
@@ -13,6 +22,8 @@ h1{
   font-weight: normal;
   margin: 2em auto 0px;
 }
+
+
 .outer-screen{
   background: #13202c;
   width: 900px;
@@ -171,3 +182,4 @@ a:hover{
 :-ms-input-placeholder {  
    color: gray;  
 }
+

@@ -1,9 +1,9 @@
 .header-login-signup{
-	background-color:#292c2f;
+	background-color:white;
 	box-shadow:0 1px 1px #ccc;
 	padding: 20px 40px;
 	height: 120px;
-	color: #ffffff;
+	
 	box-sizing: border-box;
 }
 
@@ -11,10 +11,18 @@
 	max-width: 1200px;
 	text-align: center;
 	margin: 0 auto;
+	color: black;
 }
+
+
 
 /* Logo */
 
+
+.logo {
+	width:15%;
+	align-items:center;
+	}
 .header-login-signup .header-limiter h1{
 	position: absolute;
   	top:1%;
@@ -28,7 +36,7 @@
 /* The navigation links */
 
 .header-login-signup .header-limiter a {
-	color: #ffffff;
+	color: black;
 	text-decoration: none;
 }
 
