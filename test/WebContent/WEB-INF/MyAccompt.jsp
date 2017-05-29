@@ -58,6 +58,7 @@
 <p> Mon email :  ${employe.email} </p>
 <p> Mon adresse :  ${employe.adresse} </p>
 <p> Ma date de naissance :  ${employe.dateDeNaissance} </p>
+<p> Disponibilité :  ${disponibilité} % </p>
 <h2>Mes projets</h2>
 <ul><c:forEach items="${projects}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  

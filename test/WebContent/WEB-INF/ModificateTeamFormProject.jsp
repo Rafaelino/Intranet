@@ -51,7 +51,10 @@
 <p><h3>Chef de Projet :</h3> <ul><c:forEach items="${managers}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  
  <li> ${element}  <form method = "post">
- <input type="hidden" name="formname" value="deleteteammember"/> <input class="btn_small" type="submit" value="X" /> </form>
+ <input type="hidden" name="formname" value="deleteteammember"/> <input type="hidden" name="employename" value="${element}"/>  
+   <input type="hidden" name="nom" value="${projectname}"/>
+ 
+  <input class="btn_small" type="submit" value="supprimer" /> </form>
  <form method = "post">
  <input type="hidden" name="employename" value="${element}"/>  
    <input type="hidden" name="nom" value="${projectname}"/>
@@ -72,7 +75,10 @@
  <input type="hidden" name="employename" value="${element}"/>  
  <li> ${element} <form method = "post">
  <input type="hidden" name="formname" value="deleteteammemberchef"/>
- <input class="btn_small"type="submit" value="X" /> </form>
+  <input type="hidden" name="employename" value="${element}"/>  
+   <input type="hidden" name="nom" value="${projectname}"/>
+ 
+ <input class="btn_small"type="submit" value="supprimer" /> </form>
  <form method = "post">
   <input type="hidden" name="nom" value="${projectname}"/>
   <input type="hidden" name="employename" value="${element}"/>  

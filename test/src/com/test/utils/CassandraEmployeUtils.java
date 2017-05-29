@@ -95,7 +95,7 @@ public class CassandraEmployeUtils
         List<String> projects = new ArrayList<String>();
         if(!(listprojectres).isEmpty()){
         	 for (int i = 0; i < listprojectres.size(); i++) {  	
-        		projects.add(listprojectres.get(i).getString("name")+";"+listprojectres.get(i).getString("role")+";"+listprojectres.get(i).getString("datedebut")+";"+listprojectres.get(i).getString("datefin"));  	         
+        		projects.add(listprojectres.get(i).getString("name")+";"+listprojectres.get(i).getString("role")+";"+listprojectres.get(i).getString("datedebut")+";"+listprojectres.get(i).getString("datefin")+";"+listprojectres.get(i).getString("implication"));  	         
         	 }
          }
         System.out.println(projects);
@@ -172,26 +172,38 @@ public class CassandraEmployeUtils
 		return drawstring;
 	}
 	
-	/*public String drawStringProjectBuilder(Project project){
+	public String drawStringProjectBuilder(Project project){
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
+		CassandraProjetUtils app2 = new CassandraProjetUtils();
 		List<Employe> employelist = app.getEmployeForProject(project);
 		String drawstring=project.getNom()+";";
 		if(!(employelist.isEmpty())){
 			drawstring += "[";
 		}
 		for (int i = 0; i < employelist.size()-1; i++) {
-			String[] projecttab = employelist.get(i).split(";");
-			//drawstring += "{id: "+i+", content: '"+employelist0]+" ("+projecttab[1]+")', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'},";
+			String role="Chef de projet";
+			ProjectForEmploye projectForEmploye = app2.getProjectForEmploye(employelist.get(i), project, "Chef de projet"); 
+			if (projectForEmploye == null){
+				projectForEmploye = app2.getProjectForEmploye(employelist.get(i), project, "Collaborateur");
+				role = "Collaborateur";
+			}
+			drawstring += "{id: "+i+", content: '"+employelist.get(i).getPrenom()+" "+employelist.get(i).getNom()+" ("+role+")', start: '"+projectForEmploye.getDateDebut()+"', end: '"+projectForEmploye.getDateFin()+"'},";
 		}
 		if(!(employelist.isEmpty())){
-			String[] projecttab = employelist.get(employelist.size()-1).split(";");
-			drawstring += "{id: "+(employelist.size()-1)+", content: '"+projecttab[0]+" ("+projecttab[1]+")', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
+			String role="Chef de projet";
+			ProjectForEmploye projectForEmploye = app2.getProjectForEmploye(employelist.get(employelist.size()-1), project, "Chef de projet"); 
+			if (projectForEmploye == null){
+				projectForEmploye = app2.getProjectForEmploye(employelist.get(employelist.size()-1), project, "Collaborateur");
+				role = "Collaborateur";
+			}
+			System.out.println(employelist.get(employelist.size()-1).getNom());
+			drawstring += "{id: "+(employelist.size()-1)+", content: '"+employelist.get(employelist.size()-1).getPrenom()+" "+employelist.get(employelist.size()-1).getNom()+" ("+role+")', start: '"+projectForEmploye.getDateDebut()+"', end: '"+projectForEmploye.getDateFin()+"'}";
 			drawstring += "]@";
 		}else{
 			drawstring += "@";
 		}
 		return drawstring;
-	}*/
+	}
 	public Boolean modifierEmploye(Employe employe){
 		 Cluster cluster = Cluster.builder()
                  .addContactPoints("127.0.0.1")
@@ -264,6 +276,7 @@ public class CassandraEmployeUtils
      cluster.close();    
      return employelist;
      }
+ 
  public List<Employe> getEmployeForEmpProject(ProjectForEmploye project){
 	 Cluster cluster = Cluster.builder()
              .addContactPoints("127.0.0.1")
@@ -286,6 +299,13 @@ public class CassandraEmployeUtils
      cluster.close();    
      return employelist;
      }
- 
+ public int getEmployeImplication(Employe employe){
+	List<String> projectlist =  employe.getProjects();
+	int disponibilité = 100;
+		for (int i = 0; i < projectlist.size(); i++) {
+			disponibilité -= Integer.parseInt(projectlist.get(i).split(";")[4].substring(0,projectlist.get(i).split(";")[4].length()-1 ));
+		}
+	 return disponibilité;
+ }
 }
 

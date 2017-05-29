@@ -298,7 +298,7 @@ public class CassandraProjetUtils {
 	                 .addContactPoints("127.0.0.1")
 	                 .build();
 	         Session session = cluster.connect();
-	         String cqldelemployeforproject = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist - [{name: '"+projectforemploye.getName()+"', role: '"+projectforemploye.getRole()+"', datedebut: '"+projectforemploye.getDateDebut()+"', datefin: '"+projectforemploye.getDateFin()+"'}] WHERE username = '"+employe.getUsername()+"'";
+	         String cqldelemployeforproject = "UPDATE myfirstcassandradb.employees SET projectslist = projectslist - [{name: '"+projectforemploye.getName()+"', role: '"+projectforemploye.getRole()+"', datedebut: '"+projectforemploye.getDateDebut()+"', datefin: '"+projectforemploye.getDateFin()+"', implication :'"+projectforemploye.getImplication()+"'}] WHERE username = '"+employe.getUsername()+"'";
 	         System.out.println(cqldelemployeforproject);
 	         session.execute(cqldelemployeforproject);
 		      session.close();

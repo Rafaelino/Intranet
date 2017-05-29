@@ -43,6 +43,7 @@ public class MyAccompt extends HttpServlet {
 		Employe me = app.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]);
 		request.setAttribute("admin", me.getAdmin());
 		request.setAttribute("employe", me);
+		request.setAttribute("disponibilité", app.getEmployeImplication(me));
 		List<ProjectForEmploye> projectforemploye = app2.getProjectsForEmploye(me);
 		request.setAttribute("projects",projectforemploye);
 		for (int i = 0; i < projectforemploye.size(); i++) {
@@ -162,6 +163,7 @@ public class MyAccompt extends HttpServlet {
 			Employe me = app.getEmployeByUsername(request.getParameterValues("formname")[0].substring(1, request.getParameterValues("formname")[0].length()));
 			request.setAttribute("admin", me.getAdmin());
 			request.setAttribute("employe", me);
+			request.setAttribute("disponibilité", app.getEmployeImplication(me));
 			List<ProjectForEmploye> projectforemploye = app2.getProjectsForEmploye(me);
 			request.setAttribute("projects",projectforemploye);
 			for (int i = 0; i < projectforemploye.size(); i++) {

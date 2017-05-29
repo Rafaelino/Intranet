@@ -1,6 +1,8 @@
 package com.test.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -164,13 +166,28 @@ public class ProjectApp extends HttpServlet {
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",request.getParameter("nom"));
 				request.setAttribute("projects", app.getAllProjects());
-				if(!(app.employeAlreadyInProject(app2.getEmployeByUsername(employeName),app.getProjectByName(request.getParameter("nom"))))){
-					app.addEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), role);
-					app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role,implication);
+				if (app2.getEmployeImplication(app2.getEmployeByUsername(employeName)) >= Integer.parseInt(implication.substring(0,implication.length()-1))){
+					if(!(app.employeAlreadyInProject(app2.getEmployeByUsername(employeName),app.getProjectByName(request.getParameter("nom"))))){
+						app.addEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), role);
+						app2.addProjectForEmploye(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), datedebut, datefin,role,implication);
+						request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
+						request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
+						this.getServletContext().getRequestDispatcher( "/WEB-INF/AddTeamMemberFormProject.jsp").forward( request, response );
+					}
+				}else{
+					response.setContentType("text/html;charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
+					request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
+					this.getServletContext().getRequestDispatcher( "/WEB-INF/AddTeamMemberFormProject.jsp").forward( request, response );
+					String someMessage = "L'employé n'as pas de disponibilité suffisante";
+					out.println("<html><head>");
+					out.println("<script type='text/javascript'>");
+					out.println("alert(" + "'" + someMessage + "'" + ");</script>");
+					out.println("</head><body></body></html>");
 				}
-				request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
-				request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
-				this.getServletContext().getRequestDispatcher( "/WEB-INF/AddTeamMemberFormProject.jsp").forward( request, response );
+		
+				
 			}
 			
 			
