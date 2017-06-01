@@ -102,7 +102,7 @@ if( '${admin}' == "yes"){
                  'code': 'refresh','employename': document.getElementById("employename").value
                },
 		    success: function(data) {
-		     alert(data);
+		     //alert(data);
 		    },
 		    complete: function() {
 		      // Schedule the next request when the current one's complete

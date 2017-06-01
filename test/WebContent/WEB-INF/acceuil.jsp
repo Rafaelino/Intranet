@@ -47,7 +47,7 @@
 		
     <div class="rightlist">
     <ul class="boxinrightlist">
-			<li class="recherche"><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
+			<li class="recherche"><input type="text" id="search" class="search" placeholder="ex: Nom Prénom" name="search"/></li>
 			 <li id="welcome" class="bonjour"></li>
 			 <li></li>
 

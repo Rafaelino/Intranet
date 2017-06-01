@@ -89,7 +89,7 @@ public class Message extends HttpServlet {
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/Message.jsp" ).forward( request, response );
 				}
 				}
-			}if(!(request.getHeader("code") == null)){
+			}else if(!(request.getHeader("code") == null)){
 				CassandraMessageUtils mesapp = new CassandraMessageUtils();
 				if (!(session.getAttribute("email") == null)){
 					String userEmail = (String) session.getAttribute("email");
