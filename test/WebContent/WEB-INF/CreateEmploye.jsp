@@ -14,36 +14,7 @@
 <title>Créer Employé</title>
 </head>
 <body>
-<header class="header-login-signup">
-
-	<div class="header-limiter">
-
-		<h1><img src="assets/everbe.png" width="110" height="70"  alt="arrow" ></h1>
-
-		<nav>
-			<a href="/test/testapp">Accueil</a>
-			<a href="/test/drawapp">Afficher les projets</a>
-			<a href="/test/employeapp" id="adminemploye"></a>
-			<a href="/test/projectapp" id="adminproject"></a>
-		
-
-			<script>
-			
-			</script>
-			<!-- <a href="#">Pricing</a> -->
-		</nav>
-		<ul>
-			<li><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
-			<span class="ico ico-mglass"></span>
-			 <li id="welcome"></li>
-			 <li><a href="/test/myaccompt">Mon compte</a></li>
-			 <li> </li>
-			<!--<li><a href="#">Sign up</a></li>-->
-		</ul>
-
-	</div>
-
-</header>
+<jsp:include page="Header.jsp"/>
 <div class="main">
 <h2>Ajouter un nouvel employé</h2>
 <form name="formica" method="post" onsubmit="return validateForm(event);" class="pure-form pure-form-aligned">
