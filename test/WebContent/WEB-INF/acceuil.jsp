@@ -34,24 +34,26 @@
 <header class="header-login-signup">
 
 	<div class="header-limiter">
+	
+	<div class="leftlist">
+	<ul class="boxinleftlist">
+	<li class="accueil"><a href="/test/testapp">Accueil</a></li>
+<li class="moncompte"><a href="/test/myaccompt">Mon compte</a></li>
+</ul>
+</div>
 
 		<img src="assets/everbelogo.jpg" class="logo"/>
-
-	
-		
-
-		
+			
 			<!-- <a href="#">Pricing</a> -->
 		
-		<ul>
-		<li><a href="/test/testapp">Accueil</a></li>
-			<li><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
-			<span class="ico ico-mglass"></span>
-			 <li id="welcome"></li>
-			 <li><a href="/test/myaccompt">Mon compte</a></li>
+    <div class="rightlist">
+    <ul class="boxinrightlist">
+			<li class="recherche"><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
+			 <li id="welcome" class="bonjour"></li>
 			 <li></li>
 			<!--<li><a href="#">Sign up</a></li>-->
-		</ul>
+			</ul>
+		</div>
 
 	</div>
 
