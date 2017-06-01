@@ -26,38 +26,12 @@
 
 	<link rel="stylesheet" href="assets/demo.css">
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+	
 </head>
 <body>
 <script src="assets/autocompleter.js" type="text/javascript" charset="iso-8859-1"></script>
-<header class="header-login-signup">
 
-	<div class="header-limiter">
-	
-	<div class="leftlist">
-	<ul class="boxinleftlist">
-	<li class="accueil"><a href="/test/testapp">Accueil</a></li>
-<li class="moncompte"><a href="/test/myaccompt">Mon compte</a></li>
-</ul>
-</div>
-
-		<img src="assets/everbelogo.jpg" class="logo"/>
-			
-			<!-- <a href="#">Pricing</a> -->
-
-		
-    <div class="rightlist">
-    <ul class="boxinrightlist">
-			<li class="recherche"><input type="text" id="search" class="search" placeholder="ex: Nom Prénom" name="search"/></li>
-			 <li id="welcome" class="bonjour"></li>
-			 <li></li>
-
-			<!--<li><a href="#">Sign up</a></li>-->
-			</ul>
-		</div>
-
-	</div>
-
-</header>
+<jsp:include page="Header.jsp"/>
 <div class="main">
 
 <p>Bievenue sur le site intranet d'everBe</p>

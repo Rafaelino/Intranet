@@ -23,6 +23,26 @@
 	
 }
 
+.svg-iconhome {
+  width: 2.75em;
+  height: 2.75em;
+  border-style:solid;
+  border-radius:50%;
+  border-width:0.75px;
+  padding:3px;
+  
+}
+
+.svg-iconhome path,
+.svg-iconhome polygon,
+.svg-iconhome rect {
+  fill: #000;
+}
+
+.svg-iconhome circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
 
 .leftlist {
 	display:flex;
@@ -45,29 +65,32 @@
 .boxinrightlist  {
 	display:flex;
 	flex-direction:row;
+	justify-content:space-around;
 }
 
 .accueil {
 	display:flex;
 	order:1;
 	margin-right:1rem;
+	
 }
 
 .moncompte {
 	display:flex;
-	order:2;
+	
 
 	
 }
 
 .recherche {
 	display:flex;
-	margin-right:1rem;
+	
 	
 }
 
 .bonjour {
 	display:flex;
+	
 }
 
 /* Logo */
