@@ -37,7 +37,8 @@
 		<ul>
 			 <li id="welcome"></li>
 			 <li><a href="/test/myaccompt">Mon compte</a></li>
-			 <li> </li>
+			 <li><a href="/test/message">Messages</a></li>
+			
 			<!--<li><a href="#">Sign up</a></li>-->
 		</ul>
 
@@ -58,6 +59,7 @@
 <p> Mon email :  ${employe.email} </p>
 <p> Mon adresse :  ${employe.adresse} </p>
 <p> Ma date de naissance :  ${employe.dateDeNaissance} </p>
+<p> Disponibilité :  ${disponibilité} % </p>
 <h2>Mes projets</h2>
 <ul><c:forEach items="${projects}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  

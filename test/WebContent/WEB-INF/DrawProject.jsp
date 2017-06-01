@@ -45,6 +45,22 @@
 	</div>
 
 </header>
+<script>
+function ploting(divname,projects){
+	//alert(projects.toString())
+	var container = divname;
+	var myobj = JSON.parse(JSON.stringify(projects));
+	var data = eval('(' +projects+ ')');
+	  var items = new vis.DataSet(data);
+	 
+	  // Configuration for the Timeline
+	  var options = {};
+	   // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
+	}
+	
+	</script>
+	
 <form name="create" method="post">
 			 <input type="hidden" name="formname" value="employes"/>
    			 <button class ="btn_small" name="create" value="upvote">Vue par employés</button>
@@ -52,21 +68,31 @@
 		
 	<ul>
 
-	<c:forEach items="${employes}" var="element"> 
+	<c:forEach items="${projects}" var="element" varStatus="employeloop"> 
+		
+				<script>
+			  			var projectlisting = "[";
+			  	</script>
+			  
+			 <li>
+			 <h2> ${element}     </h2>
+			  
+			  			
+			  			<input type="hidden" id="listing" name="x" value="${employedrawlisting}">
+			
+			  
+			 </li>
 
 		
-			 <li>
-			  ${element.nom} ${element.prenom}:    <c:forEach items="${element.projects}" var="projects"> 
-			  			
-			  			<p>
-			  			<c:set var="string" value="${fn:split(projects,';')}" />
-			  			${string[0]} en tant que ${string[1]} du ${string[2]} au ${string[3]}
-			  			</p>
-			  </c:forEach>
-			 </li>
+
+			 <div class="drawing" id="${element}" value="${element}"></div>
+			
 	 
 	</c:forEach>
+	
 </ul>
+
+			
 <div id="visualization"></div>
 </body>
 <script>
@@ -77,23 +103,13 @@ if( '${admin}' == "yes"){
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	
-	var container = document.getElementById('visualization');
-
-	  // Create a DataSet (allows two way data-binding)
-	  var items = new vis.DataSet([
-	    {id: 1, content: 'item 1', start: '2013-04-20'},
-	    {id: 2, content: 'item 2', start: '2013-04-14'},
-	    {id: 3, content: 'item 3', start: '2013-04-18'},
-	    {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
-	    {id: 5, content: 'item 5', start: '2013-04-25'},
-	    {id: 6, content: 'item 6', start: '2013-04-27'}
-	  ]);
-
-	  // Configuration for the Timeline
-	  var options = {};
-
-	  // Create a Timeline
-	   // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
+	 var input = document.getElementById("listing").value;
+		
+	 var fields = input.split('@');
+	for (var i = 0; i < fields.length; i++) {
+		var employees = fields[i].split(';');	
+		if(employees[1].length > 0){
+		ploting(document.getElementById(employees[0]),employees[1]);}
+	}
 </script>
 </html>

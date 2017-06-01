@@ -74,16 +74,15 @@ function ploting(divname,projects){
 			  			var projectlisting = "[";
 			  	</script>
 			 <li>
-			  ${element.nom} ${element.prenom}:    
+			  <h2> ${element.nom} ${element.prenom}:  </h2> 
 			  
 			  <c:forEach items="${element.projects}" var="projects" varStatus="loop"> 
 			  			
 			  			<p>
-			  			<c:set var="string" value="${fn:split(projects,';')}" />
+			  		
 			  			<c:set var="uname" value="${element.username}" />
 			  			<c:set var="projectlistout" value="{id: ${loop.index}, content: '${string[0]}', start: '${string[2]}', end: '${string[3]}'}," />
-			  			${string[0]} en tant que ${string[1]} du ${string[2]} au ${string[3]}	
-	  			
+			  			
 			  			<input type="hidden" id="listing" name="x" value="${projectdrawlisting}">
 			 
 			  			

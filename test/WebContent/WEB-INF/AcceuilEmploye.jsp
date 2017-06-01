@@ -50,6 +50,10 @@
    			 <button class="btn" name="modificate" value="upvote">Modifier un employé</button>
 		</form>
 				<p></p>
+		<form action="/test/disponibility">
+   			 <button class="btn">Voir les employés disponibles</button>
+		</form>
+				<p></p>
 		
 <form action ="testapp">
    			 <button class="btn" >Retour acceuil</button>

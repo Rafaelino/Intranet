@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.test.beans.Employe;
 import com.test.utils.CassandraEmployeUtils;
+import com.test.utils.CassandraProjetUtils;
 import com.test.utils.Tools;
 
 /**
@@ -50,6 +51,7 @@ public class DrawApp extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CassandraEmployeUtils app = new CassandraEmployeUtils();
+		CassandraProjetUtils app2 = new CassandraProjetUtils();
 		request.setAttribute("employes",app.getAllEmployesObjects());
 		request.setAttribute("employes",app.getAllEmployesObjects());
 		if(request.getParameterValues("formname")!=null){
@@ -73,6 +75,14 @@ public class DrawApp extends HttpServlet {
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawEmploye.jsp" ).forward( request, response );
 			}else if(request.getParameterValues("formname")[0].equals("projects")){
 				request.setAttribute("employees", app.getAllEmployes());
+				request.setAttribute("projects", app2.getAllProjects());
+				List<String> projectlist = app2.getAllProjects();
+				String employelist="";
+				for (int i = 0; i < projectlist.size(); i++) {
+					employelist += app.drawStringProjectBuilder((app2.getProjectByName(projectlist.get(i))));
+				}
+				request.setAttribute("employedrawlisting", employelist);
+				System.out.println(employelist);
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawProject.jsp" ).forward( request, response );
 			}
 		}

@@ -1,3 +1,4 @@
+<%@page import="com.test.beans.Employe"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
@@ -45,19 +46,7 @@
 	</div>
 
 </header>
-<div class = "main">
-Choisir l'affichage
-<form name="create" method="post">
-			 <input type="hidden" name="formname" value="projects"/>
-   			 <button class ="btn" name="create" value="upvote">Vue par projets</button>
-		</form>
-		
-		<form name="modificate"  method="post">
-			 <input type="hidden" name="formname" value="employes"/>
-   			 <button class ="btn"  name="modificate" value="upvote">Vue par employé</button>
-		</form>
-</div>
-<div id="visualization"></div>
+
 </body>
 <script>
 if( '${admin}' == "yes"){
@@ -67,6 +56,7 @@ if( '${admin}' == "yes"){
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	
+
 	
-</script>
+	</script>
 </html>

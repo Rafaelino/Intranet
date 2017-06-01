@@ -71,7 +71,7 @@
 
         <div class="pure-g">
         	  <div class="pure-u-1 pure-u-md-1-3">
-<form method = "post" class="pure-form pure-form-stacked">
+<form method = "post" class="pure-form pure-form-aligned">
  <input type="hidden" name="formname" value="saveteammember"/>
  <input type="hidden" name="nom" value="${projectname}"/>
 Employé :  <select name="listemploye">

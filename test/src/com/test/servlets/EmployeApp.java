@@ -56,7 +56,9 @@ public class EmployeApp extends HttpServlet {
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateEmployee.jsp" ).forward( request, response );
 			}else if(request.getParameterValues("formname")[0].equals("saveemploye")){
 			Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),request.getParameter("motdepasse"));
-			app.ajouterEmploye(employe);}
+			app.ajouterEmploye(employe);
+			request.setAttribute("creation", "Employé crée avec succés");
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/CreateEmploye.jsp" ).forward( request, response );}
 			else if(request.getParameterValues("formname")[0].equals("suppression")){
 				String name = request.getParameter("nom");
 				app.supprimerEmploye(app.getEmployeByUsername(name));

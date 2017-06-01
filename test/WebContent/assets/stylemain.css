@@ -58,6 +58,52 @@ a.read-more:hover { background-color: #c20a05; border-radius: 3px 3px 3px 3px; t
   background: #f6f6f6;
 }
 
+.fromin {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    vertical-align: top;
+    border-radius: 5px;
+    float: right;
+    color: #1a1a1a;
+    background-color: #00eeee;
+}
+.chat{
+	    position: relative;
+   
+    overflow: hidden;
+    padding: 0 35px 92px;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: #e6e6e6;
+    height:400px;
+    width:400px;
+        -webkit-box-pack: end;
+         background-color: #fff;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    overflow-y: auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.fromout{
+	    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    vertical-align: top;
+    border-radius: 5px;
+        float: left;
+    color: #fff;
+    background-color: #00b0ff;
+}
 .btn {
   -webkit-border-radius: 8;
   -moz-border-radius: 8;
