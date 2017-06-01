@@ -23,29 +23,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<header class="header-login-signup">
-
-	<div class="header-limiter">
-
-		<h1><img src="assets/everbe.png" width="110" height="70"  alt="arrow" ></h1>
-
-		<nav>
-			<a href="/test/testapp">Accueil</a>
-			<a href="/test/drawapp">Afficher les projets</a>
-			<a href="/test/employeapp" id="adminemploye"></a>
-			<a href="/test/projectapp" id="adminproject"></a>
-			<!-- <a href="#">Pricing</a> -->
-		</nav>
-		<ul>
-			 <li id="welcome"></li>
-			 <li><a href="/test/myaccompt">Mon compte</a></li>
-			 <li> </li>
-			<!--<li><a href="#">Sign up</a></li>-->
-		</ul>
-
-	</div>
-
-</header>
+<jsp:include page="Header.jsp"/>
 <script>
 function ploting(divname,projects){
 	//alert(projects.toString())
