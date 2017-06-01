@@ -36,18 +36,37 @@ public class MyAccompt extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CassandraEmployeUtils app = new CassandraEmployeUtils();
-		CassandraProjetUtils app2 = new CassandraProjetUtils();
+		CassandraEmployeUtils app1 = new CassandraEmployeUtils();
+		CassandraProjetUtils app21 = new CassandraProjetUtils();
 		HttpSession session = request.getSession();
 		if(tools.isSessionOverRedirection(session, this.getServletContext(), request, response)){}else{
-		Employe me = app.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]);
+		if(request.getParameter("name")!= null){
+			
+		
+			CassandraEmployeUtils app11 = new CassandraEmployeUtils();
+			CassandraProjetUtils app211 = new CassandraProjetUtils();
+			if(tools.isSessionOverRedirection(session, this.getServletContext(), request, response)){}else{
+			Employe me = app11.getEmployeByUsername(request.getParameter("name").split(" ")[1].substring(0,1).toLowerCase()+request.getParameter("name").split(" ")[0].toLowerCase());
+			request.setAttribute("admin", me.getAdmin());
+			request.setAttribute("employe", me);
+			request.setAttribute("disponibilité", app11.getEmployeImplication(me));
+			List<ProjectForEmploye> projectforemploye = app211.getProjectsForEmploye(me);
+			request.setAttribute("projects",projectforemploye);
+			for (int i = 0; i < projectforemploye.size(); i++) {
+				request.setAttribute("employelist"+projectforemploye.get(i).getName(),app11.getEmployeForEmpProject(projectforemploye.get(i)));
+				System.out.println("->"+"employelist"+projectforemploye.get(i).getName());
+			}
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/viewaccompt.jsp" ).forward( request, response );
+		}
+		}
+		Employe me = app1.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]);
 		request.setAttribute("admin", me.getAdmin());
 		request.setAttribute("employe", me);
-		request.setAttribute("disponibilité", app.getEmployeImplication(me));
-		List<ProjectForEmploye> projectforemploye = app2.getProjectsForEmploye(me);
+		request.setAttribute("disponibilité", app1.getEmployeImplication(me));
+		List<ProjectForEmploye> projectforemploye = app21.getProjectsForEmploye(me);
 		request.setAttribute("projects",projectforemploye);
 		for (int i = 0; i < projectforemploye.size(); i++) {
-			request.setAttribute("employelist"+projectforemploye.get(i).getName(),app.getEmployeForEmpProject(projectforemploye.get(i)));
+			request.setAttribute("employelist"+projectforemploye.get(i).getName(),app1.getEmployeForEmpProject(projectforemploye.get(i)));
 			System.out.println("->"+"employelist"+projectforemploye.get(i).getName());
 		}
 		
@@ -59,6 +78,12 @@ public class MyAccompt extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println(request.getParameter("term"));
+		if (request.getParameter("term") != null){
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilEmploye.jsp").forward( request, response );
+		}else{
+			
+		
 		if(request.getParameterValues("formname")[0].equals("logout")){
 			HttpSession session = request.getSession();
 			tools.logout(session, this.getServletContext(), request, response);
@@ -176,3 +201,4 @@ public class MyAccompt extends HttpServlet {
 	}
 	}
 }
+	}

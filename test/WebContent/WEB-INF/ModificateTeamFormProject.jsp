@@ -12,6 +12,7 @@
 <title>Modifier équipe de projet</title>
 </head>
 <body>
+<script src="assets/tools.js" type="text/javascript" charset="iso-8859-1"></script>
  	<header class="header-login-signup">
 
 	<div class="header-limiter">
@@ -97,7 +98,7 @@
      <input type="hidden" name="nom" value="${projectname}"/>
   <input type="submit" class="btn" value ="Ajouter un membre au projet"/>
 </form>
-<form method = "post">
+<form name = "suppression" method = "post" onsubmit="return validateForm(event,suppression);" >
    <input type="hidden" name="formname" value="deleteproject"/>
      <input type="hidden" name="nom" value="${projectname}"/>
   <input type="submit" class="btn" value ="Supprimer le projet"/>

@@ -37,9 +37,21 @@
     <servlet-name>MyAccompt</servlet-name>
     <servlet-class>com.test.servlets.MyAccompt</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
+    <servlet-name>SearchController</servlet-name>
+    <servlet-class>com.test.servlets.SearchController</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>AutoComplete</servlet-name>
     <servlet-class>com.test.servlets.AutoComplete</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Disponibility</servlet-name>
+    <servlet-class>com.test.servlets.Disponibility</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>Message</servlet-name>
+    <servlet-class>com.test.servlets.Message</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
@@ -72,5 +84,17 @@
   <servlet-mapping>
     <servlet-name>AutoComplete</servlet-name>
     <url-pattern>/autocomplete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchController</servlet-name>
+    <url-pattern>/searchcontroller</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Disponibility</servlet-name>
+    <url-pattern>/disponibility</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Message</servlet-name>
+    <url-pattern>/message</url-pattern>
   </servlet-mapping>
 </web-app>

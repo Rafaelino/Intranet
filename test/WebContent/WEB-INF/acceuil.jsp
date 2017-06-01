@@ -2,20 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <head>
-<link rel="stylesheet" type="text/css" href="assets/jquery.autocomplete.css" />
-<script src="http://www.google.com/jsapi"></script>
-<script>
-	google.load("jquery", "1");
-</script>
-<script src="js/jquery.autocomplete.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 <style>
 	input {
 	font-size: 80%;
 	}
 </style>
+<link rel="stylesheet" 
+  href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
  <link rel="stylesheet" href="assets/stylemain.css">
  	<link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -31,6 +28,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<script src="assets/autocompleter.js" type="text/javascript" charset="iso-8859-1"></script>
 <header class="header-login-signup">
 
 	<div class="header-limiter">
@@ -50,7 +48,7 @@
 			<!-- <a href="#">Pricing</a> -->
 		</nav>
 		<ul>
-			<li><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
+			<li><input type="text" id="search" class="search" placeholder="ex: Nom Prénom" name="search"/></li>
 			<span class="ico ico-mglass"></span>
 			 <li id="welcome"></li>
 			 <li><a href="/test/myaccompt">Mon compte</a></li>
@@ -99,20 +97,7 @@
 		<form action ="drawapp">
    			 <button>Afficher répartition projets</button>
 		</form>--%>
-        <SCRIPT LANGUAGE="JavaScript">
-            <!--
-            function button1()
-            {
-                document.form1.buttonName.value = "button 1"
-                form1.submit()
-            }    
-            function button2()
-            {
-                document.form1.buttonName.value = "button 2"
-                form1.submit()
-            }    
-            // --> 
-        </SCRIPT>
+       
         <script type="text/javascript">
 		 function openPage(pageURL)
 			 {
@@ -126,7 +111,7 @@
 				 document.getElementById("adminproject").innerHTML='Gérer les projets';
 				}
 			
-			$("#employe").autocomplete("getData.jsp");
+			
 		
 			
 			

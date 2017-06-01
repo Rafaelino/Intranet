@@ -37,7 +37,8 @@
 		<ul>
 			 <li id="welcome"></li>
 			 <li><a href="/test/myaccompt">Mon compte</a></li>
-			 <li> </li>
+			 <li><a href="/test/message">Messages</a></li>
+			
 			<!--<li><a href="#">Sign up</a></li>-->
 		</ul>
 

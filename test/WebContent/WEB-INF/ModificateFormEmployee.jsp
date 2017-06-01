@@ -5,7 +5,7 @@
 <head>
  <link rel="stylesheet" href="assets/stylemain.css">
   <link rel="stylesheet" href="assets/pure.css">
- 
+ <script src="assets/tools.js" type="text/javascript" charset="iso-8859-1"></script>
  <link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -74,7 +74,7 @@
         </div>
         </fieldset>
         </form>
-         <form method="post" class="pure-form pure-form-aligned">
+         <form name="suppression" method="post" onsubmit="return validateForm(event,suppression);" class="pure-form pure-form-aligned">
          <fieldset>
 	        <input type="hidden" name="formname" value="suppression"/>
 	        <input type="hidden" name="nom" value="${username}">
@@ -85,7 +85,6 @@
         </form>
         </div>
         
-
        
 </body>
 </html>

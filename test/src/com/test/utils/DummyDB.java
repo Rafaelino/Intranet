@@ -17,6 +17,7 @@ import com.test.beans.Employe;
 public class DummyDB {
 public DummyDB() {
 System.out.println("Dummy DB Constructor");
+
 }
 
 public List<String> getData(String query) throws SQLException {
@@ -48,9 +49,9 @@ matched.add(country);
      List<String> resultat = new ArrayList<String>();
      for (int i = 0; i < res.size(); i++) {  	
     	    pattern = Pattern.compile(query);
-    	   //if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){
-     	resultat.add(res.get(i).getString(4)+" 	"+res.get(i).getString(6));}
-		//}
+    	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){
+     	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));}
+		}
      cluster.close();
 
 	    System.out.println("/////"+query);
