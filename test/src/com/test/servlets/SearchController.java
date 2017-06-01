@@ -44,7 +44,7 @@ public class SearchController extends HttpServlet {
                 //String query = request.getParameter("q");
 
                 List<String> countries = db.getData(term);
-
+                System.out.println(" ->" +countries);
                 String searchList = new Gson().toJson(countries);
                 response.getWriter().write(searchList);
         } catch (Exception e) {

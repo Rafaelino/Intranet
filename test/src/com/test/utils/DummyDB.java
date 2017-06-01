@@ -22,20 +22,7 @@ System.out.println("Dummy DB Constructor");
 
 public List<String> getData(String query) throws SQLException {
 
-	/*
-//conn = ConnectDatabase.getConnection();
-//stmt = conn.createStatement();
-String country = null;
-query = query.toLowerCase();
-String sqlqueary="SELECT * FROM states where name like ‘"+query+"%'";
-System.out.println("InstantSearch.doGet ==> sqlstmt is " + sqlqueary);
-ResultSet rs = stmt.executeQuery(sqlqueary);
-while (rs.next())
-{
-
-country = rs.getString(1);
-matched.add(country);
-}*/
+	
 	 Cluster cluster = Cluster.builder()
              .addContactPoints("127.0.0.1")
              .build();
@@ -45,20 +32,19 @@ matched.add(country);
      List<Row> res;
      res = session.execute(cqlStatement3).all();
      Pattern pattern;
-     
+    
      List<String> resultat = new ArrayList<String>();
+     
      for (int i = 0; i < res.size(); i++) {  	
+    	 resultat.add("Boulch Raphael");
     	    pattern = Pattern.compile(query);
     	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){
-     	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));}
+    	   }/*
+     	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));
+     	  System.out.println(resultat);
+     	  }*/
 		}
-     cluster.close();
-
-	    System.out.println("/////"+query);
-	  
-    
-
-
-return resultat;
+     
+	    return resultat;
 }
 }
