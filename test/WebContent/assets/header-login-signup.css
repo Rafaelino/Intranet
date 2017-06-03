@@ -44,15 +44,35 @@
   stroke-width: 1;
 }
 
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-iconcompte {
+  width: 2em;
+  height: 2em;
+}
+
+.svg-iconcompte path,
+.svg-iconcompte polygon,
+.svg-iconcompte rect {
+  fill: #000;
+}
+
+.svg-iconcompte circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
+
 .leftlist {
-	display:flex;
-	justify-content:flex-start;
+	
+	
 	
 }	
 
 .rightlist {
-	display:flex;
-	justify-content:flex-end;
+
+	
 	
 	
 }
@@ -66,30 +86,31 @@
 	display:flex;
 	flex-direction:row;
 	justify-content:space-around;
+	width:450px;
+	align-items:center;
 }
 
 .accueil {
-	display:flex;
-	order:1;
-	margin-right:1rem;
-	
+
+
+
 }
 
 .moncompte {
 	display:flex;
-	
-
+	flex-direction:column;
+align-items:center;
 	
 }
 
 .recherche {
-	display:flex;
+
 	
 	
 }
 
 .bonjour {
-	display:flex;
+	
 	
 }
 
