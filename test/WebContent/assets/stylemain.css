@@ -143,9 +143,10 @@ form, table {
 
 
 .main{
-	position: absolute;
-	top: 20%;
+	
+	top: 4rem;
 	left:20%;
+	
 }
 .profilepic{
 	position: absolute;

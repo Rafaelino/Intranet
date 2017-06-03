@@ -100,12 +100,7 @@
 				 document.getElementById("adminemploye").innerHTML='Gérer les employés';
 				 document.getElementById("adminproject").innerHTML='Gérer les projets';
 				}
-			
-			
-		
-			
-			
-			
+				
 			</script>
         
        

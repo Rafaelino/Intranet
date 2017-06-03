@@ -17,9 +17,10 @@
 	flex-direction:row;
 	justify-content:space-between;
 	align-items:center;
-	position:fixed;
-	overflow:auto;
-	
+	position:relative;
+	overflow:hidden;
+	top: 0;
+	width:100%;
 	
 }
 
@@ -64,6 +65,29 @@ SVG Icons - svgicons.sparkk.fr
   stroke-width: 1;
 }
 
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+
+.svg-iconsearch {
+  width: 2.75em;
+  height: 2.75em;
+  border-style:solid;
+  border-radius:50%;
+  border-width:0.75px;
+   padding:3px;
+}
+
+.svg-iconsearch path,
+.svg-iconsearch polygon,
+.svg-iconsearch rect {
+  fill: #000;
+}
+
+.svg-iconsearch circle {
+  stroke: #4691f6;
+  stroke-width: 1;
+}
 .leftlist {
 	
 	
@@ -178,7 +202,13 @@ height:15%;
 }
 
 
-
+#myDIV {
+	background-color:yellow;
+	height:70px;
+	position:fixed;
+	width:100%;
+	z-index:1000;
+}
 
   
 .header-login-signup .header-limiter ul li:hover{
@@ -223,6 +253,7 @@ height:15%;
 /* For the headers to look good, be sure to reset the margin and padding of the body */
 
 body {
-	margin:0;
+	
+	
 	padding:0;
 }
