@@ -302,9 +302,10 @@ public class CassandraEmployeUtils
  public int getEmployeImplication(Employe employe){
 	List<String> projectlist =  employe.getProjects();
 	int disponibilité = 100;
+		if(projectlist != null){
 		for (int i = 0; i < projectlist.size(); i++) {
 			disponibilité -= Integer.parseInt(projectlist.get(i).split(";")[4].substring(0,projectlist.get(i).split(";")[4].length()-1 ));
-		}
+		}}
 	 return disponibilité;
  }
 }

@@ -39,9 +39,9 @@ public List<String> getData(String query) throws SQLException {
     	
     	    pattern = Pattern.compile(query);
     	 
-    	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){
+    	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));
     	   }
-     	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));
+     
      
      	  }
 		

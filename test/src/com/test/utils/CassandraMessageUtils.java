@@ -32,6 +32,7 @@ public class CassandraMessageUtils {
 		 String cqlStatementselect = "SELECT * FROM myfirstcassandradb.employees WHERE username = '"+employe1.getUsername()+"'";
 	      List<Row> res;
 	      res = session.execute(cqlStatementselect).all();
+	      
 	      List<com.datastax.driver.core.UDTValue> listmessages = new ArrayList<com.datastax.driver.core.UDTValue>();      
 	      listmessages = res.get(0).getList("rs_messages",com.datastax.driver.core.UDTValue.class);
 	      if(!(listmessages).isEmpty()){

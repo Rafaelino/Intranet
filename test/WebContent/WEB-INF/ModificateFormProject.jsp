@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <script src="assets/tools.js" type="text/javascript" charset="iso-8859-1"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -40,12 +40,22 @@
             </center>
         </form>
         <form method="post">
-	<input type="hidden" name="formname" onsubmit="return validateForm(event,suppression);" value="modificateteamform"/>
+	<input type="hidden" id="form1" name="formname" onsubmit="return validateForm(event,suppression);" value="modificateteamform"/>
             <center>
             <input type="hidden" name="nom" value="${nom}"/>
             
                   <input type="submit" value ="Modifier équipe de projet" />
             </center>
         </form>		
+        <script>
+        function validateForm(event, formname) {
+        	
+       	 event.preventDefault();
+        
+       	 if(confirm('Voulez vous effectuer cette action ?')){
+       		 document.document.formname.submit();
+       	 }
+       	
+          }</script>
 </body>
 </html>

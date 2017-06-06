@@ -75,12 +75,13 @@ a.read-more:hover { background-color: #c20a05; border-radius: 3px 3px 3px 3px; t
 	    position: relative;
    
     overflow: hidden;
-    padding: 0 35px 92px;
+    padding: 0 35px 45px;
     border-width: 1px 1px 1px 0;
     border-style: solid;
     border-color: #e6e6e6;
     height:400px;
     width:400px;
+    white-space:pre-wrap;
         -webkit-box-pack: end;
          background-color: #fff;
     -ms-flex-pack: end;

@@ -6,7 +6,6 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="https://apis.google.com/js/platform.js?onload=start" parsetags="explicit" async defer></script>
 
 <meta name="google-signin-client_id" content="812436705620-ia2pj458gq3m4eqs63dgee9fsrrrlq7u.apps.googleusercontent.com">
 <head>
@@ -14,6 +13,7 @@
        <link rel="stylesheet" href="assets/stylemain.css">
 
 <link type="text/css" rel="stylesheet" href="inc/style.css" />
+         <script src="https://apis.google.com/js/platform.js?onload=start" parsetags="explicit" async defer></script>
  
 <title>Connexion</title>
  <style type="text/css">
@@ -58,8 +58,8 @@
         </style>
 </head>
 <body>
-<div id="header">
- </div>
+<jsp:include page="Header.jsp"/>
+
  <div class="main">
  <h2>Bienvenue sur le site intranet d'everBe</h2>
  <p>Pour commencer identifiez vous avec votre compte Google</p>
@@ -77,17 +77,14 @@
 
         <div id="log"></div>
 
-        <script>
+        <script type="text/javascript">
         
-        $(function(){
-      	  $("#header").load("header-login-signup.html"); 
-      	  $("#footer").load("footer.html"); 
-      	});
+        
         
             var auth2;
 
             function start() {
-
+				
                 gapi.load('auth2', function () {
                     auth2 = gapi.auth2.init({
                         client_id: "812436705620-ia2pj458gq3m4eqs63dgee9fsrrrlq7u.apps.googleusercontent.com",
@@ -95,7 +92,7 @@
                     });
                 });
                 $('#customBtn').click(function () {
-
+                	
                     auth2.grantOfflineAccess({'redirect_uri' : 'postmessage', 'approval_prompt' : 'force'}).then(signInCallback);
 
                 });

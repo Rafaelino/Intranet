@@ -9,23 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header class="header-login-signup">
+<jsp:include page="Header.jsp"/>
 
-	<div class="header-limiter">
-
-		<h1><img src="assets/everbe.png" width="110" height="70"  alt="arrow" ></h1>
-
-		<nav>
-		
-			<!-- <a href="#">Pricing</a> -->
-		</nav>
-		<ul>
-		
-			<!--<li><a href="#">Sign up</a></li>-->
-		</ul>
-
-	</div>
-</header>
 <div class="main">
 <h3>Erreur de login , veuillez essayer de vous reconnecter</h3>
 <form action ="Authentification">

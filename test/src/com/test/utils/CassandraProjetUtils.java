@@ -194,6 +194,7 @@ public class CassandraProjetUtils {
 			return false;
 		}
 		public void deleteProject(Project project){
+			System.out.println("=>"+project.getNom());
 			 Cluster cluster = Cluster.builder()
 	                 .addContactPoints("127.0.0.1")
 	                 .build();
@@ -276,8 +277,9 @@ public class CassandraProjetUtils {
 	         List<Row> res;
 	         res = session.execute(cqlStatementselect).all();
 	         List<com.datastax.driver.core.UDTValue> listemployeres = new ArrayList<com.datastax.driver.core.UDTValue>();
-	         listemployeres = res.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
 	         List<ProjectForEmploye> projectforemployelist = new ArrayList<ProjectForEmploye>();
+	         if (!(res.isEmpty())){
+	         listemployeres = res.get(0).getList("projectslist",com.datastax.driver.core.UDTValue.class);
 	         if(!(listemployeres).isEmpty()){
 	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
 	        		
@@ -286,6 +288,7 @@ public class CassandraProjetUtils {
 	        		 }
 		         
 	        	 } 
+	         }
 	         session.close();
 	         cluster.close();    
 	         return projectforemployelist;

@@ -23,7 +23,7 @@
 
 <p><h3>Chef de Projet : </h3><ul><c:forEach items="${managers}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  
- <li> ${element}   <input class="btn_small" type="submit" value="X" /> 
+ <li> ${element}   <input class="btn_small" type="submit" value="supprimer" /> 
  </li>
  
 </c:forEach></p>
@@ -35,7 +35,7 @@
  <input type="hidden" name="nom" value="${projectname}"/>
 <p><h3>Collaborateurs :</h3><ul><c:forEach items="${collaborateurs}" var="element"> 
  <input type="hidden" name="employename" value="${element}"/>  
- <li> ${element} <input class="btn_small" type="submit" value="X" />
+ <li> ${element} <input class="btn_small" type="submit" value="supprimer" />
  </li>
  
 </c:forEach></p>
@@ -82,6 +82,7 @@ implication <select id="select" name="implication")>
 </form>
 </div>
 </div>
+ <button class ="btn" type="button" name="back" onclick="history.back()">Retour</button>
  <form action ="testapp">
    			 <button class="btn">Accueil</button>
 </form>

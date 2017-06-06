@@ -48,7 +48,7 @@
 		
     <div class="rightlist">
     <ul class="boxinrightlist">
-			<li class="recherche"><input type="text" id="employe" placeholder="ex: Nom Prénom"name="employe"/></li>
+			<li class="recherche"><input type="text" id="search" placeholder="ex: Nom Prénom"name="search"/></li>
 			 <li id="welcome" class="bonjour"></li>
 			 <li></li>
 
@@ -61,17 +61,14 @@
 </header>
 </body>
     <script type="text/javascript">
-		 function openPage(pageURL)
-			 {
-			 window.location.href = pageURL;
-			 }
 		
-			 document.getElementById("welcome").innerHTML='Bonjour ${name}';
+				if ('${name}'+"" != ""){
+			 document.getElementById("welcome").innerHTML='Bonjour ${name}';}
 			 //alert('${admin}');
-			if( '${admin}' == "yes"){
-				 document.getElementById("adminemploye").innerHTML='Gérer les employés';
-				 document.getElementById("adminproject").innerHTML='Gérer les projets';
-				}
+			//if( '${admin}' == "yes"){
+			//	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
+			//	 document.getElementById("adminproject").innerHTML='Gérer les projets';
+			//	}
 			
 			
 		

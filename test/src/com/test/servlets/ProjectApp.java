@@ -2,6 +2,7 @@ package com.test.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +59,7 @@ public class ProjectApp extends HttpServlet {
 			}else if(request.getParameterValues("formname")[0].equals("saveproject")){
 				Project project	= new Project(request.getParameter("nom"),request.getParameter("description"));
 				app.ajouterProjet(project);
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilProjet.jsp" ).forward( request, response );
 			}else if (request.getParameterValues("formname")[0].equals("selection")){
 				String name = request.getParameter("listemploye");
 				Project projet = app.getProjectByName(name);
@@ -124,7 +126,10 @@ public class ProjectApp extends HttpServlet {
 				//System.out.println(app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
 				request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
 				request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
-
+				List <Employe> listemploye = app2.getAllEmployesObjects();
+				for (int i = 0; i < listemploye.size(); i++) {
+					request.setAttribute("implication"+listemploye.get(i).getUsername(),app2.getEmployeImplication(app2.getEmployeByUsername(listemploye.get(i).getUsername())));
+				}
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/AddTeamMemberFormProject.jsp").forward( request, response );
 				
 				
@@ -166,6 +171,7 @@ public class ProjectApp extends HttpServlet {
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",request.getParameter("nom"));
 				request.setAttribute("projects", app.getAllProjects());
+			
 				if (app2.getEmployeImplication(app2.getEmployeByUsername(employeName)) >= Integer.parseInt(implication.substring(0,implication.length()-1))){
 					if(!(app.employeAlreadyInProject(app2.getEmployeByUsername(employeName),app.getProjectByName(request.getParameter("nom"))))){
 						app.addEmployeForProject(app.getProjectByName(request.getParameter("nom")), app2.getEmployeByUsername(employeName), role);

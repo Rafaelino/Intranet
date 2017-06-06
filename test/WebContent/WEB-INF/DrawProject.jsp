@@ -74,10 +74,10 @@ function ploting(divname,projects){
 <div id="visualization"></div>
 </body>
 <script>
-if( '${admin}' == "yes"){
-	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
-	 document.getElementById("adminproject").innerHTML='Gérer les projets';
-	}
+//if( '${admin}' == "yes"){
+//	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
+//	 document.getElementById("adminproject").innerHTML='Gérer les projets';
+//	}
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	

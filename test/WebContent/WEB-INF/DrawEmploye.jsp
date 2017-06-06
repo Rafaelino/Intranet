@@ -7,9 +7,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="assets/stylemain.css">
  <script src="vis/dist/vis.js"></script>
   <link href="vis/dist/vis.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" 
+  href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Répartition des projets par employé</title>
 	<meta charset="utf-8">
@@ -23,6 +27,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<script src="assets/autocompleter.js" type="text/javascript" charset="iso-8859-1"></script>
+
 <jsp:include page="Header.jsp"/>
 <script>
 function ploting(divname,projects){
@@ -80,10 +86,10 @@ function ploting(divname,projects){
 <div class="drawing" id="visualization"></div>
 </body>
 <script>
-if( '${admin}' == "yes"){
-	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
-	 document.getElementById("adminproject").innerHTML='Gérer les projets';
-	}
+//if( '${admin}' == "yes"){
+//	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
+//	 document.getElementById("adminproject").innerHTML='Gérer les projets';
+//	}
 
 	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	
