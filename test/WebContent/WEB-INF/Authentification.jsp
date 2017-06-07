@@ -13,7 +13,6 @@
        <link rel="stylesheet" href="assets/stylemain.css">
 
 <link type="text/css" rel="stylesheet" href="inc/style.css" />
-         <script src="https://apis.google.com/js/platform.js?onload=start" parsetags="explicit" async defer></script>
  
 <title>Connexion</title>
  <style type="text/css">
@@ -178,5 +177,7 @@ function signOut() {
 </script>
 <div class="deconnection">
 <a href="#" onclick="signOut();">Déconnection</a></div>-->
+         <script src="https://apis.google.com/js/platform.js?onload=start" parsetags="explicit" async defer></script>
+
 </body>
 </html>

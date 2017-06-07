@@ -81,6 +81,8 @@ a.read-more:hover { background-color: #c20a05; border-radius: 3px 3px 3px 3px; t
     border-color: #e6e6e6;
     height:400px;
     width:400px;
+     margin-bottom: 8px;
+    
     white-space:pre-wrap;
         -webkit-box-pack: end;
          background-color: #fff;
@@ -147,6 +149,11 @@ form, table {
 	position: absolute;
 	top: 20%;
 	left:20%;
+}
+.selector{
+	position: absolute;
+	top: 20%;
+	left:7%;
 }
 .profilepic{
 	position: absolute;

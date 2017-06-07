@@ -32,7 +32,7 @@
 	<input type="hidden" name="formname" value="selection"/>
 	  <div class="pure-u-1 pure-u-md-1-3">
 	   <label for="state"></label>
-	  <select  onchange="this.form.submit()" name="listemploye">
+	  <select  onchange="this.form.submit()" class="selector" name="listemploye">
 	    <option value="1"></option>
 	    <%
 		 List<String> employees = (List<String>) request.getAttribute("employees");

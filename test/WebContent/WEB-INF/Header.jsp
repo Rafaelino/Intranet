@@ -38,6 +38,8 @@
 	<ul class="boxinleftlist">
 	<li class="accueil"><a href="/test/testapp">Accueil</a></li>
 <li class="moncompte"><a href="/test/myaccompt">Mon compte</a></li>
+<li class="messages"><a href="/test/message">Messages</a></li>
+
 </ul>
 </div>
 

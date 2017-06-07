@@ -23,7 +23,7 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="profilepic">
-<img src="/test/profilepicture${employe.username}.jpg" alt="profilepicture${employe.username}.jpg" >
+<!-- <img src="/test/profilepicture${employe.username}.jpg" alt="profilepicture${employe.username}.jpg" > -->
 </div>
 
 <div class = "main">
