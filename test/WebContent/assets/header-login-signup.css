@@ -1,7 +1,7 @@
 .header-login-signup{
 	background-color:white;
 	box-shadow:0 1px 1px #ccc;
-	padding: 20px 40px;
+	
 	height: 120px;
 	box-sizing: border-box;
 	position: fixed;
@@ -205,11 +205,13 @@ height:15%;
 
 
 #myDIV {
-	background-color:yellow;
+	background-color:white;
 	height:70px;
-	position:fixed;
+	position:relative;
+	top:6rem;
 	width:100%;
 	z-index:1000;
+	box-shadow:0 1px 1px #ccc;
 }
 
   
