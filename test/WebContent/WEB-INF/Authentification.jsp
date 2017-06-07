@@ -26,7 +26,7 @@
                 border: thin solid #888;
                 box-shadow: 1px 1px 1px grey;
                 white-space: nowrap;
-                position: absolute;
+               
 	top: 30%;
 	left:120%;
             }

@@ -143,8 +143,8 @@ form, table {
 
 
 .main{
-	
-	top: 4rem;
+	position: absolute;
+	top: 15rem;
 	left:20%;
 	
 }
@@ -157,6 +157,8 @@ form, table {
 	position: absolute;
 	top: 30%;
 	left:20%;
+	z-index:10000;
+	background-color:yellow;
 }
 .drawing{
 	  margin-top: 10px;
