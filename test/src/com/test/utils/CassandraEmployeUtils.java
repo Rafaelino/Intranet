@@ -164,7 +164,7 @@ public class CassandraEmployeUtils
 		}
 		if(!(projectlist.isEmpty())){
 			String[] projecttab = projectlist.get(projectlist.size()-1).split(";");
-			drawstring += "{id: "+(projectlist.size()-1)+", content: '"+projecttab[0]+" ("+projecttab[1]+")', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
+			drawstring += "{id: "+(projectlist.size()-1)+", content: '"+projecttab[0]+" ("+projecttab[1]+") "+projecttab[4]+"', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
 			drawstring += "]@";
 		}else{
 			drawstring += "@";
@@ -302,9 +302,10 @@ public class CassandraEmployeUtils
  public int getEmployeImplication(Employe employe){
 	List<String> projectlist =  employe.getProjects();
 	int disponibilité = 100;
+		if(projectlist != null){
 		for (int i = 0; i < projectlist.size(); i++) {
 			disponibilité -= Integer.parseInt(projectlist.get(i).split(";")[4].substring(0,projectlist.get(i).split(";")[4].length()-1 ));
-		}
+		}}
 	 return disponibilité;
  }
 }

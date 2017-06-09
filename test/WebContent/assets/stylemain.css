@@ -71,16 +71,23 @@ a.read-more:hover { background-color: #c20a05; border-radius: 3px 3px 3px 3px; t
     color: #1a1a1a;
     background-color: #00eeee;
 }
+.draw{
+	margin-top: 120px;
+}
+
 .chat{
 	    position: relative;
    
     overflow: hidden;
-    padding: 0 35px 92px;
+    padding: 0 35px 45px;
     border-width: 1px 1px 1px 0;
     border-style: solid;
     border-color: #e6e6e6;
     height:400px;
     width:400px;
+     margin-bottom: 8px;
+    
+    white-space:pre-wrap;
         -webkit-box-pack: end;
          background-color: #fff;
     -ms-flex-pack: end;
@@ -148,6 +155,11 @@ form, table {
 	left:20%;
 	
 	
+}
+.selector{
+	position: absolute;
+	top: 20%;
+	left:7%;
 }
 .profilepic{
 	position: absolute;

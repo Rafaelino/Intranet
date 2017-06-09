@@ -36,14 +36,15 @@ public List<String> getData(String query) throws SQLException {
      List<String> resultat = new ArrayList<String>();
      
      for (int i = 0; i < res.size(); i++) {  	
-    	 resultat.add("Boulch Raphael");
+    	
     	    pattern = Pattern.compile(query);
-    	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){
-    	   }/*
-     	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));
-     	  System.out.println(resultat);
-     	  }*/
-		}
+    	 
+    	   if(pattern.matcher(res.get(i).getString(4).toLowerCase()+" "+res.get(i).getString(6).toLowerCase()).find()){	resultat.add(res.get(i).getString(4)+" "+res.get(i).getString(6));
+    	   }
+     
+     
+     	  }
+		
      
 	    return resultat;
 }

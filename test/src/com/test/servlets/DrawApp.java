@@ -73,16 +73,32 @@ public class DrawApp extends HttpServlet {
 				request.setAttribute("projectdrawlisting", projectlisting);
 				
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawEmploye.jsp" ).forward( request, response );
-			}else if(request.getParameterValues("formname")[0].equals("projects")){
+			}else if(request.getParameterValues("formname")[0].equals("myprojects")){
 				request.setAttribute("employees", app.getAllEmployes());
 				request.setAttribute("projects", app2.getAllProjects());
 				List<String> projectlist = app2.getAllProjects();
 				String employelist="";
 				for (int i = 0; i < projectlist.size(); i++) {
+					String employetemp = app.drawStringProjectBuilder((app2.getProjectByName(projectlist.get(i))));
+					//if(employe)
+					System.out.println("///->"+employetemp);
+					employelist += employetemp;
+				}
+				request.setAttribute("employedrawlisting", employelist);
+				//System.out.println(employelist);
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawProject.jsp" ).forward( request, response );
+			}
+			else if(request.getParameterValues("formname")[0].equals("projects")){
+				request.setAttribute("employees", app.getAllEmployes());
+				request.setAttribute("projects", app2.getAllProjects());
+				List<String> projectlist = app2.getAllProjects();
+				String employelist="";
+				System.out.println("##"+projectlist);
+				for (int i = 0; i < projectlist.size(); i++) {
 					employelist += app.drawStringProjectBuilder((app2.getProjectByName(projectlist.get(i))));
 				}
 				request.setAttribute("employedrawlisting", employelist);
-				System.out.println(employelist);
+				//System.out.println(employelist);
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/DrawProject.jsp" ).forward( request, response );
 			}
 		}

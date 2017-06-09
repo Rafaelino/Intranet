@@ -1,6 +1,7 @@
 package com.test.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.test.beans.Employe;
 import com.test.utils.CassandraEmployeUtils;
 import com.test.utils.CassandraMessageUtils;
+import com.test.utils.DummyDB;
 
 /**
  * Servlet implementation class Message
@@ -96,8 +99,15 @@ public class Message extends HttpServlet {
 					//response.setContentType("application/json");
 					String name = request.getHeader("employename");
 					String host = userEmail.split("@")[0];
-					request.setAttribute("employees", app.getAllEmployes());
-				request.setAttribute("messagelist", mesapp.getMessageList(app.getEmployeByUsername(host),app.getEmployeByUsername(name)));
+					//request.setAttribute("employees", app.getAllEmployes());
+					List<String> messagelist = mesapp.getMessageList(app.getEmployeByUsername(host),app.getEmployeByUsername(name));
+					 String messageList = new Gson().toJson(messagelist);
+		             response.getWriter().write(messageList);
+					//request.setAttribute("messagelist", mesapp.getMessageList(app.getEmployeByUsername(host),app.getEmployeByUsername(name)));
+					
+				
+
+				
 				}
 			}
 		

@@ -13,14 +13,14 @@
 <jsp:include page="Header.jsp"/>
 <div class="main">
 <h2>Ajouter un nouveau projet</h2>
-<form method="post" class="pure-form pure-form-aligned">
+<form name="formica" method="post" onsubmit="return validateForm(event);" class="pure-form pure-form-aligned">
 <input type="hidden" name="formname" value="saveproject"/>
 	<input type="hidden" name="formname" value="saveemploye"/>
     <fieldset>
         <div class="pure-control-group">
             <label for="name">Nom</label>
             <input id="name" name="nom" type="text" placeholder="Nom">
-            <span class="pure-form-message-inline">Champ Obligatoire</span>
+            <span id="nomspan" class="pure-form-message-inline">Champ Obligatoire</span>
         </div>
          <div class="pure-control-group">
             <label for="name">Description</label>
@@ -35,6 +35,22 @@
         </fieldset>
         </form>
         </div>
-
+<script>
+function validateForm(event) {
+	event.preventDefault();
+    var x = document.forms["formica"]["nom"].value;
+    var err=0;
+    if (x == "") {
+    	 document.getElementById("nomspan").style.color='red';
+    	 document.getElementById("nomspan").innerHTML='Ce champ doît être renseigné';
+        err = 1;
+    }
+   if (err == 1){
+	   return false;
+   }else{
+	   document.formica.submit();
+   }
+}
+</script>
 </body>
 </html>

@@ -32,7 +32,7 @@
 	<input type="hidden" name="formname" value="selection"/>
 	  <div class="pure-u-1 pure-u-md-1-3">
 	   <label for="state"></label>
-	  <select  onchange="this.form.submit()" name="listemploye">
+	  <select  onchange="this.form.submit()" class="selector" name="listemploye">
 	    <option value="1"></option>
 	    <%
 		 List<String> employees = (List<String>) request.getAttribute("employees");
@@ -59,7 +59,7 @@
 <div class="main">
 A ${receiver.prenom} ${receiver.nom}<p></p>
 
-<div class="chat">
+<div id="chat" class="chat">
 
 	<% List<String> messagelist = (List<String>) request.getAttribute("messagelist");
  	if(!(messagelist == null)){
@@ -87,12 +87,7 @@ A ${receiver.prenom} ${receiver.nom}<p></p>
 </div>
 <script type="text/javascript">
 
-if( '${admin}' == "yes"){
-	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
-	 document.getElementById("adminproject").innerHTML='Gérer les projets';
-	}
 
-	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
 	
 	(function refresh() {
 		  $.ajax({
@@ -102,7 +97,8 @@ if( '${admin}' == "yes"){
                  'code': 'refresh','employename': document.getElementById("employename").value
                },
 		    success: function(data) {
-		     //alert(data);
+	//   alert(data);
+		     refreshMessageListData(data);
 		    },
 		    complete: function() {
 		      // Schedule the next request when the current one's complete
@@ -110,7 +106,36 @@ if( '${admin}' == "yes"){
 		    }
 		  });
 		})();
+	
+	function refreshMessageListData(data){
+		var messages = data.split(",");
+		document.getElementById("chat").innerHTML = "";
+		/*for (var i = 1; i < messages.length-1; i++) {
+			//alert(messages[i].split(";")[1].substring(0,messages[i].split(";")[1].length-1));
+			messages[i].split(";")[1] = messages[i].split(";")[1].substring(0,messages[i].split(";")[1].length-1);
+		}*/
+		if(messages[0].split(";")[0].substring(2,messages[0].length) == document.getElementById("employename").value){
+			document.getElementById("chat").innerHTML +="<p class=\"fromout\">" +messages[0].split(";")[1].substring(0,messages[0].split(";")[1].length-1) +"</p>";
+		}else{
+			document.getElementById("chat").innerHTML += "<p class=\"fromin\">" +messages[0].split(";")[1].substring(0,messages[0].split(";")[1].length-1) +"</p>";
 
+		}
+		for (var i = 1; i < messages.length-1; i++) {
+			if(messages[i].split(";")[0].substring(1,messages[i].length) == document.getElementById("employename").value){
+				document.getElementById("chat").innerHTML +="<p class=\"fromout\">" +messages[i].split(";")[1].substring(0,messages[i].split(";")[1].length-1) +"</p>";
+			}else{
+				document.getElementById("chat").innerHTML += "<p class=\"fromin\">" +messages[i].split(";")[1].substring(0,messages[i].split(";")[1].length-1) +"</p>";
+
+			}
+		}
+		if(messages[messages.length-1].split(";")[0].substring(1,messages[0].length) == document.getElementById("employename").value){
+			document.getElementById("chat").innerHTML +="<p class=\"fromout\">" +messages[messages.length-1].split(";")[1].substring(0,messages[messages.length-1].split(";")[1].length-2) +"</p>";
+		}else{
+			document.getElementById("chat").innerHTML += "<p class=\"fromin\">" +messages[messages.length-1].split(";")[1].substring(0,messages[messages.length-1].split(";")[1].length-2) +"</p>";
+
+		}
+		//document
+	}
 		
 	
 </script>
