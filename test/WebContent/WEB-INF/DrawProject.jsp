@@ -38,13 +38,17 @@ function ploting(divname,projects){
 	}
 	
 	</script>
-	
-<form name="create" method="post">
+	<div class="draw">
+<form name="create" class="draw" method="post">
 			 <input type="hidden" name="formname" value="employes"/>
    			 <button class ="btn_small" name="create" value="upvote">Vue par employés</button>
 		</form>
-		
-	<ul>
+		<form name="create" class="draw" method="post">
+			 <input type="hidden" name="formname" value="myprojects"/>
+   			 <button class ="btn_small" name="create" value="upvote">Voir mes projets</button>
+		</form>
+		</div>
+	<ul >
 
 	<c:forEach items="${projects}" var="element" varStatus="employeloop"> 
 		

@@ -164,7 +164,7 @@ public class CassandraEmployeUtils
 		}
 		if(!(projectlist.isEmpty())){
 			String[] projecttab = projectlist.get(projectlist.size()-1).split(";");
-			drawstring += "{id: "+(projectlist.size()-1)+", content: '"+projecttab[0]+" ("+projecttab[1]+")', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
+			drawstring += "{id: "+(projectlist.size()-1)+", content: '"+projecttab[0]+" ("+projecttab[1]+") "+projecttab[4]+"', start: '"+projecttab[2]+"', end: '"+projecttab[3]+"'}";
 			drawstring += "]@";
 		}else{
 			drawstring += "@";

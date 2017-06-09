@@ -71,6 +71,10 @@ a.read-more:hover { background-color: #c20a05; border-radius: 3px 3px 3px 3px; t
     color: #1a1a1a;
     background-color: #00eeee;
 }
+.draw{
+	margin-top: 120px;
+}
+
 .chat{
 	    position: relative;
    
