@@ -7,7 +7,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-<meta name="google-signin-client_id" content="812436705620-ia2pj458gq3m4eqs63dgee9fsrrrlq7u.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="812436705620-ksatoad7ksl5s5qlqldvpf1kqs1hsrt2.apps.googleusercontent.com">
 <head>
 <meta charset="ISO-8859-1">
        <link rel="stylesheet" href="assets/stylemain.css">
@@ -60,8 +60,7 @@
 <jsp:include page="Header.jsp"/>
 
  <div class="main">
- <h2>Bienvenue sur le site intranet d'everBe</h2>
- <p>Pour commencer identifiez vous avec votre compte Google</p>
+ <p>Start by signing in with your Google accompt</p>
  <div class="idbutton">
  <div id="gSignInWrapper" >
             <span class="label"></span>
@@ -86,7 +85,7 @@
 				
                 gapi.load('auth2', function () {
                     auth2 = gapi.auth2.init({
-                        client_id: "812436705620-ia2pj458gq3m4eqs63dgee9fsrrrlq7u.apps.googleusercontent.com",
+                        client_id: "812436705620-ksatoad7ksl5s5qlqldvpf1kqs1hsrt2.apps.googleusercontent.com",
                         scope: 'profile'
                     });
                 });
@@ -100,6 +99,7 @@
             function signInCallback(authResult) {
 
                 console.log(authResult['code']);
+                console.log("signInCallback...");
                 if (authResult['code']) {
 
                     // Hide the sign-in button now that the user is authorized, for example:
@@ -116,7 +116,10 @@
                       },
                       contentType: 'application/octet-stream; charset=utf-8',
                       success: function(result) {
-                    	  window.location.replace("http://localhost:8080/test/testapp");
+                    	  window.location.replace("http://evernet:8080/test/testapp");
+                      },
+                      error: function(e) {
+                          alert('Error: ' + e.message);
                       },
                       processData: false,
                       data:{"code":authResult['code']},
@@ -127,9 +130,12 @@
                   }
 
             }
+            
             window.onload = function() {
    			 document.getElementById("welcome").innerHTML= '';
-
+   			document.getElementById('search').style.display = 'none';
+   			document.getElementById('demo').style.display = 'none';
+   			document.getElementById('myaccompt').style.display = 'none';
    			};
         </script>
 <!--  

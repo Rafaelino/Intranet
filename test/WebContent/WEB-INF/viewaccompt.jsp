@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
       <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+          <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,37 +10,107 @@
  <link rel="stylesheet" href="assets/stylemain.css">
  <link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title> Compte</title>
+<title>everBe</title>
 <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-signin-client_id" content="812436705620-ia2pj458gq3m4eqs63dgee9fsrrrlq7u.apps.googleusercontent.com">
 
-	<link rel="stylesheet" href="assets/demo.css">
 	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Compte</title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
-<div class = "main">
-<h1>Bienvenue dans l'espace de ${employe.prenom} ${employe.nom} </h1>
-<h2>Ses Informations 	</h2>
-<p> Nom :  ${employe.prenom} ${employe.nom}</p>
-<p> Email :  ${employe.email} </p>
-<p> Adresse :  ${employe.adresse} </p>
-<p> Date de naissance :  ${employe.dateDeNaissance} </p>
-<p> Disponibilité :  ${disponibilité} % </p>
-<h2>Projets</h2>
-<ul><c:forEach items="${projects}" var="element"> 
+<div class="profilepic">
+<!-- <img src="/test/profilepicture${employe.username}.jpg" alt="profilepicture${employe.username}.jpg" > -->
+</div>
+<div class="flex-rectangle">
+ 	<div class="drawer">
+ <ul>
+  <li id="liinfo" class ="active"><button class="inv_button" onclick="display('informations','liinfo')">Informations</button></a></li>
+  <li id="liprojet" class ="not_active"><button class="inv_button" onclick="display('projets','liprojet')">Projects</button></a>  </li>
+  
+  
+</ul>
+</div>
+</div>
+
+<h1>Informations of ${employe.prenom} ${employe.nom} </h1>
+
+<div id="informations" style="display:block">
+		<c:set var = "datenaissance" value = "${employe.dateDeNaissance}"/>
+
+<div class ="projects" style="display:block">
+<h2>Informations of ${employe.prenom} ${employe.nom} </h2>
+
+<h1></h1>
+
+		
+<table>
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">Birth date</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </tfoot>
+      <tbody>
+      <tr>
+          <th scope="col">${employe.prenom} ${employe.nom}</th>
+          <th scope="col">${employe.email}</th>
+          <th scope="col">${employe.adresse}</th>
+          <th scope="col">${fn:substring(datenaissance,8,10)}/${fn:substring(datenaissance,5,7)}/${fn:substring(datenaissance,0,4)}</th>
+        </tr>
+     </tbody>
+    </table>
+    <p></p>
+ 	<form method="post" >
+				 <input type="hidden" name="formname" value="logout"/>
+   				 <button class="btn_small">Deconnection</button>
+		</form> 
+</div>
+
+</div>
+
+<div class ="projects" id ="projets" style="display:none">
+<h2>Projects of ${employe.prenom} ${employe.nom} </h2>
+<table>
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">Project</th>
+          <th scope="col">Role</th>
+          <th scope="col">Start date</th>
+          <th scope="col">End date</th>
+          <th scope="col">Team members</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </tfoot>
+      <tbody>
+      <c:forEach items="${projects}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  
- <li> <h3>${element.name}</h3>  <c:set var = "salary" scope = "session" value = "${element.role}"/>
-    
- <p> Début :  ${element.dateDebut}   Fin : ${element.dateFin} </p>
- <p> Role : ${element.role}</p>
+
+ <c:set var = "salary" scope = "session" value = "${element.role}"/>
  <c:set var = "employelistname" value = "employelist${element.name}"/>
- <p>Autre membre de l'équipe : </p>
- 	<ul><c:forEach items="${requestScope[employelistname]}" var="employelisting"> 
+ <c:set var = "datedebut" value = "${element.dateDebut}"/>
+<c:set var = "dateFin" value = "${element.dateFin}"/>
+
+   <tr>
+          <th scope="row">${element.name}</th>
+          <td>${element.role}</td>
+          <td>${fn:substring(datedebut,8,10)}/${fn:substring(datedebut,5,7)}/${fn:substring(datedebut,0,4)}</td>
+          <td>${fn:substring(dateFin,8,10)}/${fn:substring(dateFin,5,7)}/${fn:substring(dateFin,0,4)}</td>
+  <td><ul><c:forEach items="${requestScope[employelistname]}" var="employelisting"> 
  	<c:set var = "username" scope = "session" value = "${employelisting.username}"/>
  	 	<c:set var = "username2" scope = "session" value = "${employe.username}"/>
  	
@@ -51,26 +122,40 @@
 
  		</li>
  		</c:if>
- 	</c:forEach></ul>
+ 	</c:forEach></ul></td>
+        </tr>
  	
  	
  <c:if test = "${salary == 'Chef de projet'}">
       
       </c:if> 
- </li>
 </c:forEach>
-</ul>
+  </tbody>
+    </table>
  <input type="hidden" id="usernameid" value="Connectée en tant que ${name}"/>
- 	
+ 	</div>
 </div>
 <script type="text/javascript">
-
+function display(divformname,liname) {
+	document.getElementById('projets').style.display = "none";
+	document.getElementById('liprojet').className = "not_active";
+	document.getElementById('liinfo').className = "not_active";
+	document.getElementById('informations').style.display = "none";
+	if(document.getElementById(divformname).style.display == "none"){
+		if(liname === "liprojet"){
+	document.getElementById(liname).className = "active2";}else{
+		document.getElementById(liname).className = "active";
+	}
+	document.getElementById(divformname).style.display = "block";}else{
+		document.getElementById(divformname).style.display = "none";
+	}
+}
 if( '${admin}' == "yes"){
 	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
 	 document.getElementById("adminproject").innerHTML='Gérer les projets';
 	}
 
-	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
+
 </script>
 </body>
 </html>

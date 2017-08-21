@@ -5,16 +5,26 @@ import java.util.UUID;
 public class Project {
 	
 	private UUID id;
-	private String nom;
+	private String name;
 	private String description;
+	private Boolean active;
 	
 	public Project(String nom, String description) {
 		super();
-		this.nom = nom;
+		this.name = nom;
 		this.description = description;
 		this.id = UUID.randomUUID();
+		this.active = true;
 	}	
 	
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public UUID getId() {
 		return id;
 	}
@@ -23,11 +33,11 @@ public class Project {
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String nom) {
+		this.name = nom;
 	}
 	public String getDescription() {
 		return description;

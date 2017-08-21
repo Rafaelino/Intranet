@@ -13,11 +13,18 @@
 
 <div class="main">
 <h3>
-Vous êtes maintenant déconnecté.
- Suivre ce lien pour se reconnecter </h3>
+You are now disconnected
+ Follow this link for identification </h3>
 <form action ="Authentification">
-   			 <button class ="btn">Se reconnecter</button>
+   			 <button class ="btn">Connect</button>
    			 </form>
    			 </div>
+   			 <script>
+   			    window.onload = function() {
+   			 document.getElementById("welcome").innerHTML= '';
+   			document.getElementById('search').style.display = 'none';
+   			document.getElementById('demo').style.display = 'none';
+   			document.getElementById('myaccompt').style.display = 'none';
+   			};</script>
 </body>
 </html>

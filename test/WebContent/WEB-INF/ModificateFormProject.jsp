@@ -5,11 +5,11 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>everBe</title>
 </head>
 <body>
 <form action ="testapp">
-   			 <button>Acceuil</button>
+   			 <button>Home</button>
 </form>
 <form method="post">
 	<input type="hidden" name="formname" value="modificateform"/>
@@ -17,13 +17,13 @@
             <table border="1" width="30%" cellpadding="5">
                 <thead>
                     <tr>
-                        <th colspan="2">Modifier informations Projets : </th>
+                        <th colspan="2">Modify project information : </th>
                     </tr>
                 </thead>
                 
                 <tbody>
                     <tr>
-                        <td>Nom</td>
+                        <td>Name</td>
                         <td><input type="text" name="nom" value="${nom}"></td>
                     </tr>
                     <tr>
@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" value="Enregistrer" /></td>
+                        <td><input type="submit" value="Save" /></td>
                     </tr>
               
                 </tbody>

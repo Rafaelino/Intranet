@@ -15,26 +15,28 @@
 <div class="buttonsmenu">
 		<div class="pad"></div>
 		<div class="pad"></div>
-<div id="create">
-	<form  action="projectapp" name="create" method="post">
-			 <input type="hidden" name="formname" value="create"/>
-   			 <button class ="btn" name="create" value="upvote">Create a project</button>
-		</form></div>
-				<div class="pad"></div>
-
+		
 		<form action="projectapp" name="modificate"  method="post">
 			 <input type="hidden" name="formname" value="modificate"/>
    			 <button class ="btn"  name="modificate" value="upvote">Modify a project</button>
 		</form>
+		<div class="pad"></div>
+<div id="create">
+	<form action="projectapp" name="create" method="post">
+			 <input type="hidden" name="formname" value="create"/>
+   			 <button class ="btn" name="create" value="upvote">Create a project</button>
+		</form></div>
+			
+		
 			<div class="pad"></div>
 
 </div>
 <script type="text/javascript">
 
 if( '${admin}' == "yes"){
-	}else{
-	document.getElementById("create").style.visibility = "hidden";
-	}
+}else{
+document.getElementById("create").style.visibility = "hidden";
+}
 </script>
 </body>
 </html>

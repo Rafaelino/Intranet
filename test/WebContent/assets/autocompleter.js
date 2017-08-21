@@ -15,7 +15,7 @@ $(document).ready(function() {
              });
           },
           select: function( event, ui ) {
-              window.location.replace("http://localhost:8080/test/myaccompt?name="+ui.item.value);
+              window.location.replace("http://evernet:8080/test/myaccompt?name="+ui.item.value);
               return false;
            }
       });

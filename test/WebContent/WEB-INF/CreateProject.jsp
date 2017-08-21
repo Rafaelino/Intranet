@@ -12,15 +12,15 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="main">
-<h2>Ajouter un nouveau projet</h2>
+<h2>Add a new project</h2>
 <form name="formica" method="post" onsubmit="return validateForm(event);" class="pure-form pure-form-aligned">
 <input type="hidden" name="formname" value="saveproject"/>
 	<input type="hidden" name="formname" value="saveemploye"/>
     <fieldset>
         <div class="pure-control-group">
-            <label for="name">Nom</label>
-            <input id="name" name="nom" type="text" placeholder="Nom">
-            <span id="nomspan" class="pure-form-message-inline">Champ Obligatoire</span>
+            <label for="name">Name</label>
+            <input id="name" name="nom" type="text" placeholder="Name">
+            <span id="nomspan" class="pure-form-message-inline">Mandatory field</span>
         </div>
          <div class="pure-control-group">
             <label for="name">Description</label>
@@ -29,7 +29,7 @@
         </div>
          <div class="pure-control-group">
            
-            <input class="btn" type="submit" value="Enregistrer" />
+            <input class="btn" type="submit" value="Save" />
             <span class="pure-form-message-inline"></span>
         </div>
         </fieldset>
@@ -42,7 +42,7 @@ function validateForm(event) {
     var err=0;
     if (x == "") {
     	 document.getElementById("nomspan").style.color='red';
-    	 document.getElementById("nomspan").innerHTML='Ce champ doît être renseigné';
+    	 document.getElementById("nomspan").innerHTML='This field is required';
         err = 1;
     }
    if (err == 1){

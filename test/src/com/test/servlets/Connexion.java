@@ -21,6 +21,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.test.beans.Employe;
 import com.test.beans.IdTokenVerifierAndParser;
 import com.test.utils.CassandraEmployeUtils;
 import com.google.api.services.drive.Drive;
@@ -35,7 +36,8 @@ public class Connexion extends HttpServlet{
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 //resp.setContentType("text/html");
+		 //response.setContentType("text/html");
+			System.out.println("Trying to connect");
 		 	System.out.println(request.getHeader("data").toString());
 		 	//System.out.println(request.getParameter("data").toString());
 	        /*try {
@@ -63,24 +65,28 @@ public class Connexion extends HttpServlet{
 		 		// You can also find your Web application client ID and client secret from the
 		 		// console and specify them directly when you create the GoogleAuthorizationCodeTokenRequest
 		 		// object.
-		 		String CLIENT_SECRET_FILE = "client_secret.json";
+		 		String CLIENT_SECRET_FILE = "/client_secret.json";
 
 		 		// Exchange auth code for access token
-		 		GoogleClientSecrets clientSecrets =
-		 		    GoogleClientSecrets.load(
-		 		        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+		 		
+
+		 		//GoogleClientSecrets clientSecrets =
+		 		 //   GoogleClientSecrets.load(
+		 		 //       JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+		 		System.out.println("here");
 		 		GoogleTokenResponse tokenResponse =
 		 		          new GoogleAuthorizationCodeTokenRequest(
 		 		              new NetHttpTransport(),
 		 		              JacksonFactory.getDefaultInstance(),
 		 		              "https://www.googleapis.com/oauth2/v4/token",
-		 		              clientSecrets.getDetails().getClientId(),
-		 		              clientSecrets.getDetails().getClientSecret(),
+		 		             "812436705620-ksatoad7ksl5s5qlqldvpf1kqs1hsrt2.apps.googleusercontent.com",
+		 		            "gTbBqyZI8lIr36jgnm3WmAT2",
 		 		              request.getHeader("data").toString(),
 		 		              "postmessage")  // Specify the same redirect URI that you use with your web
 		 		                             // app. If you don't have a web version of your app, you can
 		 		                             // specify an empty string.
 		 		              .execute();
+		 		System.out.println("here");
 
 		 		String accessToken = tokenResponse.getAccessToken();
 
@@ -122,14 +128,26 @@ public class Connexion extends HttpServlet{
 		 		System.out.println(name);
 		 		  CassandraEmployeUtils app = new CassandraEmployeUtils();
 		 		 HttpSession session = request.getSession(true);
+		 		 if(app.isEmployeeInDatabase(email)){
 		            session.setAttribute("name", name);
 		            session.setAttribute("email", email);
 		            session.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());
 		         request.setAttribute("name", name);
 		         request.setAttribute("email", email );
 		    
-		         request.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());
-		         System.out.println("->"+ app.getEmployeByUsername(email.split("@")[0]).getAdmin());
+		         request.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());}
+		 		 else{
+		 			 Employe newemployee = new Employe(email,name.split(" ")[1],name.split(" ")[0]);
+		 			 app.ajouterEmploye(newemployee);
+		 			 session.setAttribute("name", name);
+			            session.setAttribute("email", email);
+			            session.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());
+			         request.setAttribute("name", name);
+			         request.setAttribute("email", email );
+			    
+			         request.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());
+		 		 }
+		       
 	    }
 	
 }

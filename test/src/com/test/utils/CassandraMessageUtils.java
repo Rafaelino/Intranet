@@ -9,7 +9,9 @@ import com.datastax.driver.core.Session;
 import com.test.beans.Employe;
 
 public class CassandraMessageUtils {
-
+	
+	public static final String SERVER_ADRESS = "127.0.0.1";
+	
 	public void sendMessage(Employe sender, Employe receiver, String message){
 		 Cluster cluster = Cluster.builder()
 	              .addContactPoints("127.0.0.1")

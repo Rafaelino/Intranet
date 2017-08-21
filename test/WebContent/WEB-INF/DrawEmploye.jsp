@@ -15,7 +15,7 @@
   <link rel="stylesheet" 
   href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Répartition des projets par employé</title>
+<title>everBe</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,11 +45,16 @@ function ploting(divname,projects){
 	}
 	
 	</script>
+	<div class="draw">
 <form name="create" method="post">
 			 <input type="hidden" name="formname" value="projects"/>
-   			 <button class ="btn_small" name="create" value="upvote">Vue par projets</button>
+   			 <button class ="btn_small" name="create" value="upvote">Project view</button>
 		</form>
-		
+		<form name="create" class="draw" method="post">
+			 <input type="hidden" name="formname" value="downloadcsv"/>
+			 <input type="hidden" name="origin" value="employe"/>
+   			 <button class ="btn_small" name="create" value="upvote">Export CSV</button>
+		</form>
 	<ul>
 
 	<c:forEach items="${employes}" var="element" varStatus="employeloop"> 
@@ -84,15 +89,13 @@ function ploting(divname,projects){
 </ul>
 
 <div class="drawing" id="visualization"></div>
+</div>
 </body>
 <script>
 //if( '${admin}' == "yes"){
 //	 document.getElementById("adminemploye").innerHTML='Gérer les employés';
 //	 document.getElementById("adminproject").innerHTML='Gérer les projets';
 //	}
-
-	document.getElementById("welcome").innerHTML='Connecté en tant que ${name}';
-	
 
 	
 	 var input = document.getElementById("listing").value;

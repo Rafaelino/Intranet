@@ -71,7 +71,7 @@ public class Employe {
 		this.projects = projects;
 	}
 
-	public Employe(String username, String nom, String prenom, String dateDeNaissance, String email, String adresse, String password){
+	public Employe(String username, String nom, String prenom, String dateDeNaissance, String email, String adresse, String admin){
 		
 		this.username = username;
 		this.dateDeNaissance = dateDeNaissance;
@@ -79,7 +79,23 @@ public class Employe {
 		this.prenom = prenom;
 		this.email = email;
 		this.adresse = adresse;
-		this.password = password;
+		this.admin = admin;
+		
+	}
+public Employe(String email, String nom, String prenom){
+		
+		this.email = email;
+		this.username = email.split("@")[0];
+		this.nom = nom;
+		this.prenom = prenom;
+		if(email.split("@")[0].equals("rboulch")){
+			this.admin = "yes";
+		}else{
+			this.admin = "no";
+		}
+		this.adresse="";
+		this.password="";
+		this.dateDeNaissance="";
 		
 	}
 

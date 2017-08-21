@@ -94,7 +94,7 @@ public class MyAccompt extends HttpServlet {
 				CassandraProjetUtils app = new CassandraProjetUtils();
 				String name = request.getParameter("projectname");
 				Project projet = app.getProjectByName(name);
-				request.setAttribute("nom", projet.getNom());
+				request.setAttribute("nom", projet.getName());
 				request.setAttribute("description", projet.getDescription());
 				request.setAttribute("employees", app2.getAllEmployes());
 				request.setAttribute("projectname",name);
@@ -180,6 +180,11 @@ public class MyAccompt extends HttpServlet {
 			request.setAttribute("collaborateurs",app.getAllWorkers(app.getProjectByName(request.getParameter("nom"))));
 			request.setAttribute("managers",app.getAllManagers(app.getProjectByName(request.getParameter("nom"))));
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/AddTeamMemberFormProject.jsp").forward( request, response );
+		}else if(request.getParameterValues("formname")[0].equals("modificateform")){
+			CassandraEmployeUtils app = new CassandraEmployeUtils();
+			Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),request.getParameter("admindata"));
+			app.modifierEmploye(employe);
+			this.getServletContext().getRequestDispatcher( "/WEB-INF/MyAccompt.jsp").forward( request, response );
 		}else if(request.getParameterValues("formname")[0].substring(0, 1).equals("!")){
 			CassandraEmployeUtils app = new CassandraEmployeUtils();
 			CassandraProjetUtils app2 = new CassandraProjetUtils();

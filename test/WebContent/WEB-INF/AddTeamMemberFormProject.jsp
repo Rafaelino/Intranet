@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="assets/stylemain.css">
  	<link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>everBe</title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
@@ -18,10 +18,10 @@
 
 <form method = "post">
  <input type="hidden" name="formname" value="deleteteammember"/>
-<h1>Information pour le projet : ${projectname}</h1>
+<h1>Information for project : ${projectname}</h1>
 <input type="hidden" name="nom" value="${projectname}"/>
 
-<p><h3>Chef de Projet : </h3><ul><c:forEach items="${managers}" var="element"> 
+<p><h3>Project manager : </h3><ul><c:forEach items="${managers}" var="element"> 
 <input type="hidden" name="employename" value="${element}"/>  
  <li> ${element}   <input class="btn_small" type="submit" value="supprimer" /> 
  </li>
@@ -33,9 +33,9 @@
 <form method = "post">
  <input type="hidden" name="formname" value="deleteteammemberchef"/>
  <input type="hidden" name="nom" value="${projectname}"/>
-<p><h3>Collaborateurs :</h3><ul><c:forEach items="${collaborateurs}" var="element"> 
+<p><h3>Collaborators :</h3><ul><c:forEach items="${collaborateurs}" var="element"> 
  <input type="hidden" name="employename" value="${element}"/>  
- <li> ${element} <input class="btn_small" type="submit" value="supprimer" />
+ <li> ${element} <input class="btn_small" type="submit" value="delete" />
  </li>
  
 </c:forEach></p>
@@ -47,7 +47,7 @@
 <form method = "post" class="pure-form pure-form-aligned">
  <input type="hidden" name="formname" value="saveteammember"/>
  <input type="hidden" name="nom" value="${projectname}"/>
-Employé :  <select name="listemploye">
+Employee :  <select name="listemploye">
 	    <option value="1"></option>
 	    <%
 		 List<String> employees = (List<String>) request.getAttribute("employees");
@@ -57,14 +57,14 @@ Employé :  <select name="listemploye">
 		 }
 		%>
 	  </select>		  
-en tant que : 
+as : 
 <select name="role">
 	    <option value="1"></option>
-	    <option value="Chef de projet">Chef de projet</option>
-	    <option value="Collaborateur">Collaborateur</option>
+	    <option value="Chef de projet">Project manager</option>
+	    <option value="Collaborateur">Collaborator</option>
 	  </select>
-du    <input type="date" name="datedebut" />
-au    <input type="date" name="datefin" /> 
+from    <input type="date" name="datedebut" />
+to    <input type="date" name="datefin" /> 
 implication <select id="select" name="implication")>
   <option value="10%">10%</option> 
   <option value="20%">20%</option>
@@ -77,14 +77,14 @@ implication <select id="select" name="implication")>
          <option value="90%">90%</option>
   <option value="100%" selected>100%</option>
 </select>
- <input type="submit" class="btn" value="Enregistrer" > 
+ <input type="submit" class="btn" value="Save" > 
  <p></p>
 </form>
 </div>
 </div>
- <button class ="btn" type="button" name="back" onclick="history.back()">Retour</button>
+ <button class ="btn" type="button" name="back" onclick="history.back()">Back</button>
  <form action ="testapp">
-   			 <button class="btn">Accueil</button>
+   			 <button class="btn">Home page</button>
 </form>
 </div>
 </body>

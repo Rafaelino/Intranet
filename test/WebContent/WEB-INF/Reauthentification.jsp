@@ -12,10 +12,15 @@
 <jsp:include page="Header.jsp"/>
 
 <div class="main">
-<h3>Erreur de login , veuillez essayer de vous reconnecter</h3>
+<h3>Wrong login , try again to connect</h3>
 <form action ="Authentification">
-   			 <button class ="btn">Se reconnecter</button>
+   			 <button class ="btn">Connect</button>
    			 </form>
    			 </div>
+   			<script type="text/javascript">   window.onload = function() {
+      			 	document.getElementById('search').style.display = 'none';
+      			 	document.getElementById('demo').style.display = 'none';
+      	   			document.getElementById('myaccompt').style.display = 'none';
+        			};</script>
 </body>
 </html>

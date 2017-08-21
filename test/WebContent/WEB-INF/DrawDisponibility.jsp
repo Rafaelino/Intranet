@@ -11,7 +11,7 @@
  <script src="vis/dist/vis.js"></script>
   <link href="vis/dist/vis.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Répartition des projets par employé</title>
+<title>everBe</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

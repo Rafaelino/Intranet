@@ -38,7 +38,7 @@ public class EmployeApp extends HttpServlet {
 		if(tools.isSessionOverRedirection(session, this.getServletContext(), request, response)){}else{
 	
 		request.setAttribute("admin", app.getEmployeByUsername(session.getAttribute("email").toString().split("@")[0]).getAdmin());
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/AcceuilEmploye.jsp" ).forward( request, response );}
+		this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );}
 	}
 
 	/**
@@ -78,9 +78,12 @@ public class EmployeApp extends HttpServlet {
 				request.setAttribute("employe", employe);
 				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateFormEmployee.jsp" ).forward( request, response );
 			}else if(request.getParameterValues("formname")[0].equals("modificateform")){
-				Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),"");
+				Employe employe = new Employe(request.getParameter("email").split("@")[0],request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("datedenaissance"),request.getParameter("email"),request.getParameter("adresse"),request.getParameter("admindata"));
+				System.out.println("+++"+employe.getAdmin());
+				request.setAttribute("employees", app.getAllEmployes());
 				app.modifierEmploye(employe);
-				doGet(request, response);
+				this.getServletContext().getRequestDispatcher( "/WEB-INF/ModificateEmployee.jsp" ).forward( request, response );
+
 			}
 			}	
 		

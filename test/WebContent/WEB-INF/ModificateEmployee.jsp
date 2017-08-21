@@ -17,7 +17,7 @@
 <div class="main">
 <form method="post" class="pure-form pure-form-stacked">
     <fieldset>
-        <legend>Choisissez un employé</legend>
+        <legend>Select an employee</legend>
 
         <div class="pure-g">
 
@@ -37,7 +37,7 @@
 		%>
 	  </select>
 	  <p></p>
-  <input class="btn" type="submit" value="Valider" >
+  <input class="btn" type="submit" value="Validate" >
   </div>
   </div>
   </fieldset>

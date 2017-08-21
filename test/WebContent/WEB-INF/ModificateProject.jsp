@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ page import="java.util.List" %>
+      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,14 +11,14 @@
  
  <link rel="stylesheet" href="assets/header-login-signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>everBe</title>
 </head>
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="main">
 <form method="post" class="pure-form pure-form-stacked">
     <fieldset>
-        <legend>Choisissez un projet</legend>
+        <legend>Select a project</legend>
 
         <div class="pure-g">
 
@@ -26,16 +28,12 @@
 
 	  <select name="listemploye">
 	    <option value="1"></option>
-	    <%
-	    List<String> projets = (List<String>) request.getAttribute("projects");
-		 for (String projet : projets)
-		 { 
-		out.print("<option value='"+projet+"'>"+projet+"</option>");
-		 }
-		%>
+	    <c:forEach items="${projects}" var="element"> 
+	    <option value='${element.name}'>${element.name}</option>
+	    </c:forEach>
 	  </select>
 	  <p></p>
-  <input class="btn" type="submit" value="Valider" >
+  <input class="btn" type="submit" value="Validate" >
   </div>
   </div>
   </fieldset>

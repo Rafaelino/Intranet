@@ -38,6 +38,8 @@ public class TestApp extends HttpServlet {
 		String userEmail = (String) session.getAttribute("email");
 		if (userEmail.split("@")[1].equals("everbe.com")){
 			request.setAttribute("admin", session.getAttribute("admin"));
+			Boolean projectmanager = app.isAProjectManager(app.getEmployeByUsername(userEmail.split("@")[0]));
+			request.setAttribute("projectmanager", projectmanager);
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/acceuil.jsp" ).forward( request, response );
 		}else{
 			session.invalidate();
