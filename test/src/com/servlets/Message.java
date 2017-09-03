@@ -1,4 +1,4 @@
-package com.test.servlets;
+package com.servlets;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.beans.Employe;
 import com.google.gson.Gson;
-import com.test.beans.Employe;
-import com.test.utils.CassandraEmployeUtils;
-import com.test.utils.CassandraMessageUtils;
-import com.test.utils.DummyDB;
+import com.utils.CassandraEmployeUtils;
+import com.utils.CassandraMessageUtils;
+import com.utils.DummyDB;
 
 /**
  * Servlet implementation class Message

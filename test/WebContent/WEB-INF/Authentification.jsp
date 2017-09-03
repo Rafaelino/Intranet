@@ -116,7 +116,7 @@
                       },
                       contentType: 'application/octet-stream; charset=utf-8',
                       success: function(result) {
-                    	  window.location.replace("http://evernet:8080/test/testapp");
+                    	  window.location.replace("http://evernet:8080/everNet/testapp");
                       },
                       error: function(e) {
                           alert('Error: ' + e.message);

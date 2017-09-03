@@ -1,7 +1,8 @@
-package com.test.servlets;
+package com.servlets;
 
 import com.google.gson.Gson;
-import com.test.utils.*;
+import com.utils.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

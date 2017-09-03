@@ -1,9 +1,9 @@
-package com.test.utils;
+package com.utils;
 
+import com.beans.Employe;
+import com.beans.ProjectForEmploye;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
-import com.test.beans.Employe;
-import com.test.beans.ProjectForEmploye;
 
 public class CassandraDataBaseManager {
 	

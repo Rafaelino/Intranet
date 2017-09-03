@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.utils;
 
 public class AutoCompleteData {
     private final String label;

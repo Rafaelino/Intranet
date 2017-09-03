@@ -1,9 +1,4 @@
-package com.test.utils;
-
-import com.test.beans.Employe;
-import com.test.beans.Project;
-import com.test.beans.ProjectForEmploye;
-import com.test.utils.*;
+package com.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,10 +6,18 @@ import java.util.*;
 
 import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
 
+import com.beans.Employe;
+import com.beans.Project;
+import com.beans.ProjectForEmploye;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
+import com.utils.*;
 import com.datastax.driver.core.Row;
-
+/**
+ * Class that handles database interaction for employee management 
+ * 
+ * 
+ */
 public class CassandraEmployeUtils 
 {
 	public static String SERVER_ADRESS = "127.0.0.1";

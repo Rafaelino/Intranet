@@ -1,4 +1,4 @@
-package com.test.servlets;
+ package com.servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.test.beans.Employe;
-import com.test.beans.Project;
-import com.test.beans.ProjectForEmploye;
-import com.test.utils.CassandraEmployeUtils;
-import com.test.utils.CassandraProjetUtils;
-import com.test.utils.Tools;
+import com.beans.Employe;
+import com.beans.Project;
+import com.beans.ProjectForEmploye;
+import com.utils.CassandraEmployeUtils;
+import com.utils.CassandraProjetUtils;
+import com.utils.Tools;
 
 /**
  * Servlet implementation class DrawApp

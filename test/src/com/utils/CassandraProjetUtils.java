@@ -1,20 +1,24 @@
-package com.test.utils;
+package com.utils;
 
-
+/**
+ * Class that handles database interaction for project management 
+ * 
+ * 
+ */
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.beans.Employe;
+import com.beans.Project;
+import com.beans.ProjectForEmploye;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.test.beans.Employe;
-import com.test.beans.Project;
-import com.test.beans.ProjectForEmploye;
-import com.test.utils.*;
+import com.utils.*;
 
 public class CassandraProjetUtils {
 	public static String SERVER_ADRESS = "127.0.0.1";
@@ -144,7 +148,7 @@ public class CassandraProjetUtils {
 	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
 		        	listemploye.add(listemployeres.get(i));	
 		        	if(app2.getEmployeByUsername(listemploye.get(i).getString("name")).getNom() != null){
-		        		if(listemploye.get(i).getString("role").equals("Collaborateur")){
+		        		if(listemploye.get(i).getString("role").equals("Collaborateur") || listemploye.get(i).getString("role").equals("Collaborator")){
 		        	resultat.add(app2.getEmployeByUsername(listemploye.get(i).getString("name")).getNom()+ " "+app2.getEmployeByUsername(listemploye.get(i).getString("name")).getPrenom());	
 		        		}
 		        	}
@@ -174,7 +178,7 @@ public class CassandraProjetUtils {
 	        	 for (int i = 0; i < listemployeres.size(); i++) {  	
 		        	listemploye.add(listemployeres.get(i));	
 		        	if(app2.getEmployeByUsername(listemploye.get(i).getString("name")).getNom() != null){
-		        		if(listemploye.get(i).getString("role").equals("Chef de projet")){
+		        		if(listemploye.get(i).getString("role").equals("Chef de projet") || listemploye.get(i).getString("role").equals("Project manager")){
 		        	resultat.add(app2.getEmployeByUsername(listemploye.get(i).getString("name")).getNom()+ " "+app2.getEmployeByUsername(listemploye.get(i).getString("name")).getPrenom());	
 		        		}
 		        	}

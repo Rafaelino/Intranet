@@ -1,4 +1,4 @@
-package com.test.servlets;
+package com.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.test.beans.Employe;
-import com.test.utils.CassandraEmployeUtils;
-import com.test.utils.Tools;
+import com.beans.Employe;
+import com.utils.CassandraEmployeUtils;
+import com.utils.Tools;
 
 /**
  * Servlet implementation class CreateApp

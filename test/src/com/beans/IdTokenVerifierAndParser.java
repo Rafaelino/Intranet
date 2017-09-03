@@ -1,4 +1,4 @@
-package com.test.beans;
+package com.beans;
 
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;

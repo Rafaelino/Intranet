@@ -1,6 +1,6 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="com.test.utils.*"%>
+<%@page import="com.utils.*"%>
 <%
 DummyDB db = new DummyDB();
 

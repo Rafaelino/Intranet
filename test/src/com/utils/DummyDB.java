@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.utils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.beans.Employe;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.test.beans.Employe;
 
 public class DummyDB {
 public DummyDB() {

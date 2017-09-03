@@ -113,7 +113,7 @@ function ploting(divname,projects){
 			 <div class="drawing" id="${element}" value="${element}" style="visibility:hidden">
 			 <h2> ${element}    <%
 	
-		%>  <button class ="btn_small" onclick="display('itemadd${element}')" >Ajouter période</button> </h2>
+		%>  <button class ="btn_small" onclick="display('itemadd${element}')" >Add work period</button> </h2>
 			 
 			 <%-- <form name="create" class="draw" method="post">
 			 	<input type="hidden" name="formname" value="addperiod"/>

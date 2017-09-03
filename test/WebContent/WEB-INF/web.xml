@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>test</display-name>
+  <display-name>everNet</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -11,47 +11,47 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>Test</servlet-name>
-    <servlet-class>com.test.servlets.Test</servlet-class>
+    <servlet-class>com.servlets.Test</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Connexion</servlet-name>
-    <servlet-class>com.test.servlets.Connexion</servlet-class>
+    <servlet-class>com.servlets.Connexion</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>EmployeApp</servlet-name>
-    <servlet-class>com.test.servlets.EmployeApp</servlet-class>
+    <servlet-class>com.servlets.EmployeApp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ProjectApp</servlet-name>
-    <servlet-class>com.test.servlets.ProjectApp</servlet-class>
+    <servlet-class>com.servlets.ProjectApp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>TestApp</servlet-name>
-    <servlet-class>com.test.servlets.TestApp</servlet-class>
+    <servlet-class>com.servlets.TestApp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>DrawApp</servlet-name>
-    <servlet-class>com.test.servlets.DrawApp</servlet-class>
+    <servlet-class>com.servlets.DrawApp</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>MyAccompt</servlet-name>
-    <servlet-class>com.test.servlets.MyAccompt</servlet-class>
+    <servlet-class>com.servlets.MyAccompt</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SearchController</servlet-name>
-    <servlet-class>com.test.servlets.SearchController</servlet-class>
+    <servlet-class>com.servlets.SearchController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AutoComplete</servlet-name>
-    <servlet-class>com.test.servlets.AutoComplete</servlet-class>
+    <servlet-class>com.servlets.AutoComplete</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Disponibility</servlet-name>
-    <servlet-class>com.test.servlets.Disponibility</servlet-class>
+    <servlet-class>com.servlets.Disponibility</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>Message</servlet-name>
-    <servlet-class>com.test.servlets.Message</servlet-class>
+    <servlet-class>com.servlets.Message</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>

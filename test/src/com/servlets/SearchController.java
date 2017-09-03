@@ -1,4 +1,4 @@
-package com.test.servlets;
+package com.servlets;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.test.utils.DummyDB;
+import com.utils.DummyDB;
 
 /**
  * Servlet implementation class SearchController

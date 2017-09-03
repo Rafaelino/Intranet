@@ -1,4 +1,4 @@
-package com.test.utils;
+package com.utils;
 
 import java.io.IOException;
 

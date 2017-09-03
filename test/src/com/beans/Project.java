@@ -1,9 +1,17 @@
-package com.test.beans;
+package com.beans;
 
 import java.util.UUID;
-
+/**
+ * Class that represents a project
+ * 
+ * 
+ */
 public class Project {
-	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
 	private UUID id;
 	private String name;
 	private String description;

@@ -1,4 +1,4 @@
-package com.test.servlets;
+package com.servlets;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.beans.Employe;
+import com.beans.IdTokenVerifierAndParser;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -21,12 +23,14 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.test.beans.Employe;
-import com.test.beans.IdTokenVerifierAndParser;
-import com.test.utils.CassandraEmployeUtils;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
-
+import com.utils.CassandraEmployeUtils;
+/**
+ * Servlet that handles the Google Sign In 
+ * 
+ * 
+ */
 public class Connexion extends HttpServlet{
 	
 	
@@ -137,6 +141,7 @@ public class Connexion extends HttpServlet{
 		    
 		         request.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());}
 		 		 else{
+		 			 if(email.split("@")[1].equals("everbe.com")){
 		 			 Employe newemployee = new Employe(email,name.split(" ")[1],name.split(" ")[0]);
 		 			 app.ajouterEmploye(newemployee);
 		 			 session.setAttribute("name", name);
@@ -146,6 +151,7 @@ public class Connexion extends HttpServlet{
 			         request.setAttribute("email", email );
 			    
 			         request.setAttribute("admin", app.getEmployeByUsername(email.split("@")[0]).getAdmin());
+		 			 }
 		 		 }
 		       
 	    }

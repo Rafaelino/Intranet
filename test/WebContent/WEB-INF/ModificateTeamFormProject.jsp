@@ -133,7 +133,7 @@ function ploting(divname,projects){
 
 			 <div class="drawing" id="${projectname}" value="${projectname}" >
 			
-			 <h2><button class ="btn_small" onclick="display('itemadd${projectname}')" >Ajouter période</button> </h2>
+			 <h2><button class ="btn_small" onclick="display('itemadd${projectname}')" >Add work period</button> </h2>
 			 
 			 <%-- <form name="create" class="draw" method="post">
 			 	<input type="hidden" name="formname" value="addperiod"/>
@@ -217,8 +217,8 @@ function ploting(divname,projects){
         End date : <input type="date" id="add_datefin${projectname}" name="datefin" placeholder="Date de fin">
         Implication : <input type="text" id="add_implication${projectname}" name="implication" placeholder="Implication">  <span id="implicationaddspan${projectname}" class="pure-form-message-inline"></span>
 		Role : <select name="listrole">
-	    <option value="Collaborateur">Collaborator</option>
-	    <option value="Chef de projet">Project manager</option>
+	    <option value="Collaborator">Collaborator</option>
+	    <option value="Project manager">Project manager</option>
 	   
 	  </select>
 

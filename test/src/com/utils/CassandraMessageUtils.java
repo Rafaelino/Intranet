@@ -1,12 +1,12 @@
-package com.test.utils;
+package com.utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.beans.Employe;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.test.beans.Employe;
 
 public class CassandraMessageUtils {
 	

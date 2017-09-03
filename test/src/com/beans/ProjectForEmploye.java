@@ -1,7 +1,15 @@
-package com.test.beans;
-
+package com.beans;
+/**
+ * Class that represents a period of work of an employee on a project
+ * 
+ * 
+ */
 public class ProjectForEmploye {
-	
+	/**
+	 * An employee has a role, an implication, a start and end date for the project identified by its name 
+	 * 
+	 * 
+	 */
 	private String role;
 	private String name;
 	private String dateDebut;

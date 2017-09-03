@@ -1,9 +1,18 @@
-package com.test.beans;
+package com.beans;
 
 import java.util.List;
 
+/**
+ * Class that represents an employee
+ * 
+ * 
+ */
 public class Employe {
-	
+	/**
+	 * 
+	 * Different constructors according to available data on the employee 
+	 * 
+	 */
 	public Employe() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,14 +97,14 @@ public Employe(String email, String nom, String prenom){
 		this.username = email.split("@")[0];
 		this.nom = nom;
 		this.prenom = prenom;
-		if(email.split("@")[0].equals("rboulch")){
+		if(email.split("@")[0].equals("rboulch") || email.split("@")[0].equals("rfetita") || email.split("@")[0].equals("amarzin")){
 			this.admin = "yes";
 		}else{
 			this.admin = "no";
 		}
 		this.adresse="";
 		this.password="";
-		this.dateDeNaissance="";
+		this.dateDeNaissance="....-..-..";
 		
 	}
 
